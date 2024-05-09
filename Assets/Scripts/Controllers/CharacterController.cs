@@ -1,3 +1,4 @@
+using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using UnityEngine;
 namespace Twinfiltration
 {
     [RequireComponent(typeof(CapsuleCollider), typeof(Rigidbody))]
-    public class CharacterController : MonoBehaviour
+    public class CharacterController : NetworkBehaviour
     {
         [SerializeField] protected ControllerDefinition m_ControllerDefinition;
 
@@ -33,6 +34,9 @@ namespace Twinfiltration
 
         private void FixedUpdate()
         {
+            if (!isLocalPlayer)
+                return;
+
             var deltaTime = Time.fixedDeltaTime;
 
             GetMovementInput();
