@@ -13,9 +13,6 @@ namespace Twinfiltration
 
         protected override void GetMovementInput()
         {
-            if (!isLocalPlayer)
-                return;
-
             float x = Input.GetAxisRaw("Horizontal");
             float z = Input.GetAxisRaw("Vertical");
 
