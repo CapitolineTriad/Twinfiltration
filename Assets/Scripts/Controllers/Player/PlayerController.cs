@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Twinfiltration
 {
+    [RequireComponent(typeof(CapsuleCollider), typeof(Rigidbody))]
     public class PlayerController : CharacterController
     {
         protected override void Awake()
