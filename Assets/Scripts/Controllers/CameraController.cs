@@ -42,14 +42,9 @@ namespace Twinfiltration
 
         [SerializeField] public Transform m_TrackedObject;
         [SerializeField] public Vector3 m_CameraPosition;
-        [SerializeField] public Vector3 m_CameraRotation;
+        [SerializeField] public float m_CameraPitch;
+        [SerializeField] public float m_CameraYaw;
         
-        private Vector3 m_LastTrackedPosition;
-        private Vector3 m_LastPosition;
-        private Vector3 m_LastRotation;
-
-        private Quaternion m_RotationStart;
-        private Vector3 m_PositionStart;
 
         private Camera m_Camera;
         private Transform m_CameraTransform;
@@ -59,46 +54,39 @@ namespace Twinfiltration
         {
             m_Camera = GetComponent<Camera>();
             m_CameraTransform = transform;
-            m_LastPosition = m_CameraPosition;
-            m_LastRotation = m_CameraRotation;
         }
 
+        private float m_LastPitch, m_LastYaw;
+        private Quaternion m_RotationStart;
         private void Update()
         {
             float deltaTime = Time.deltaTime;
-            
             SpringUtils.UpdateDampedSpringCoef(ref m_SpringCoefs, deltaTime, m_AngularFrequency, m_DampingRatio);
 
-            var currTrackedPos = m_TrackedObject != null ? m_TrackedObject.position : Vector3.zero;
-            if (m_LastPosition != m_CameraPosition || m_LastRotation != m_CameraRotation || m_LastTrackedPosition != currTrackedPos)
+            bool rotationChanged = m_LastPitch != m_CameraPitch || m_LastYaw != m_CameraYaw;
+            if (rotationChanged)
             {
-                m_InterpolateVal = 0;
-                m_LastTrackedPosition = currTrackedPos;
-                m_LastPosition = m_CameraPosition;
-                m_LastRotation = m_CameraRotation;
                 m_RotationStart = m_CameraTransform.rotation;
-                m_PositionStart = m_CameraTransform.position;
+                m_RotInterpolateVal = 0;
+                m_LastPitch = m_CameraPitch;
+                m_LastYaw = m_CameraYaw;
             }
         }
 
-        private float m_InterpolateVal, m_InterpolateVel;
+        private float m_RotInterpolateVal, m_RotInterpolateVel;
+        private float m_PosXInterpolateVel, m_PosYInterpolateVel, m_PosZInterpolateVel;
         private void LateUpdate()
         {
-            // Rotate the camera.
-            SpringUtils.UpdateDampedSpringMotion(ref m_InterpolateVal, ref m_InterpolateVel, 1f, m_SpringCoefs);
-            if (m_TrackedObject != null)
-            {
-                var cameraDir = (m_TrackedObject.position - m_CameraTransform.position).normalized;
-                var lookRotation = Quaternion.LookRotation(cameraDir, Vector3.up);
+            SpringUtils.UpdateDampedSpringMotion(ref m_RotInterpolateVal, ref m_RotInterpolateVel, 1f, m_SpringCoefs);
+            m_CameraTransform.rotation = Quaternion.SlerpUnclamped(m_RotationStart, Quaternion.Euler(new Vector3(m_CameraPitch, m_CameraYaw, 0)), m_RotInterpolateVal);
 
-                m_CameraTransform.rotation = Quaternion.SlerpUnclamped(m_RotationStart, lookRotation, m_InterpolateVal);
-            }
-            else
-            {
-                m_CameraTransform.rotation = Quaternion.SlerpUnclamped(m_RotationStart, Quaternion.Euler(m_CameraRotation), m_InterpolateVal);
-            }
+            Vector3 targetPos = m_TrackedObject.position + Quaternion.Euler(0, m_CameraYaw, 0) * m_CameraPosition;
+            Vector3 interpolatePos = m_CameraTransform.position;
+            SpringUtils.UpdateDampedSpringMotion(ref interpolatePos.x, ref m_PosXInterpolateVel, targetPos.x, m_SpringCoefs);
+            SpringUtils.UpdateDampedSpringMotion(ref interpolatePos.y, ref m_PosYInterpolateVel, targetPos.y, m_SpringCoefs);
+            SpringUtils.UpdateDampedSpringMotion(ref interpolatePos.z, ref m_PosZInterpolateVel, targetPos.z, m_SpringCoefs);
 
-            m_CameraTransform.position = Vector3.LerpUnclamped(m_PositionStart, m_CameraPosition, m_InterpolateVal);
+            m_CameraTransform.position = interpolatePos;
         }
     }
 }
