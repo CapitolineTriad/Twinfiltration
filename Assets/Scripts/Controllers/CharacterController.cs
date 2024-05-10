@@ -46,7 +46,7 @@ namespace Twinfiltration
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.collider.gameObject.layer ==  Mathf.Log(m_ControllerDefinition.TerrainLayer, 2))
+            if (collision.collider.gameObject.layer ==  Mathf.Log(m_ControllerDefinition.TerrainLayer, 2)) // MAKE WALLS NOT TERRAIN
                 m_IsGrounded = true;
         }
 
