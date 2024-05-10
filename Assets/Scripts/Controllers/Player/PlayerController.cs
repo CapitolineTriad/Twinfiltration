@@ -12,7 +12,14 @@ namespace Twinfiltration
         protected override void Awake()
         {
             m_Camera = Camera.main.transform;
+
             base.Awake();
+        }
+
+        private void Start()
+        {
+            if (isLocalPlayer)
+                Camera.main.GetComponent<CameraController>().m_TrackedObject = m_CharTransform;
         }
 
         protected override void GetMovementInput()
@@ -24,6 +31,8 @@ namespace Twinfiltration
             m_TargetDir = viewYaw * new Vector3(x, 0, z);
             if (m_TargetDir.magnitude > 1)
                 m_TargetDir.Normalize();
+
+            m_Animator.SetBool("IsMoving", m_TargetDir.magnitude > 0);
         }
 
         private void OnDrawGizmos()

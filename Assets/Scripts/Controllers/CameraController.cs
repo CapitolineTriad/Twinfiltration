@@ -1,40 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.TerrainTools;
 using UnityEngine;
 
 namespace Twinfiltration
 {
-    /*[CustomEditor(typeof(CameraController))]
-    public class Stuff : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            CameraController cameraController = target as CameraController;
-            if(GUILayout.Button("Left"))
-            {
-                cameraController.m_CameraPosition = new Vector3(-100, 15, 15);
-                cameraController.m_CameraRotation = new Vector3(35, 90, 0);
-            }
-            if (GUILayout.Button("Right"))
-            {
-                cameraController.m_CameraPosition = new Vector3(25, 15, 15);
-                cameraController.m_CameraRotation = new Vector3(35, 270, 0);
-            }
-            if (GUILayout.Button("Top"))
-            {
-                cameraController.m_CameraPosition = new Vector3(-40, 15, 80);
-                cameraController.m_CameraRotation = new Vector3(35, 180, 0);
-            }
-            if (GUILayout.Button("Bottom"))
-            {
-                cameraController.m_CameraPosition = new Vector3(-40, 15, -50);
-                cameraController.m_CameraRotation = new Vector3(35, 0, 0);
-            }
-        }
-    }*/
-
     public class CameraController : MonoBehaviour
     {
         [SerializeField] private float m_AngularFrequency;
@@ -56,8 +23,8 @@ namespace Twinfiltration
             m_CameraTransform = transform;
         }
 
-        private float m_LastPitch, m_LastYaw;
         private Quaternion m_RotationStart;
+        private float m_LastPitch, m_LastYaw;
         private void Update()
         {
             float deltaTime = Time.deltaTime;
@@ -79,6 +46,9 @@ namespace Twinfiltration
         {
             SpringUtils.UpdateDampedSpringMotion(ref m_RotInterpolateVal, ref m_RotInterpolateVel, 1f, m_SpringCoefs);
             m_CameraTransform.rotation = Quaternion.SlerpUnclamped(m_RotationStart, Quaternion.Euler(new Vector3(m_CameraPitch, m_CameraYaw, 0)), m_RotInterpolateVal);
+
+            if (m_TrackedObject == null)
+                return;
 
             Vector3 targetPos = m_TrackedObject.position + Quaternion.Euler(0, m_CameraYaw, 0) * m_CameraPosition;
             Vector3 interpolatePos = m_CameraTransform.position;

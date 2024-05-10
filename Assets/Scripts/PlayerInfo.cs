@@ -21,7 +21,7 @@ public class PlayerInfo : MonoBehaviour
     }
 
     private int m_LastCount = -1;
-    private void Update()
+    private void FixedUpdate()
     {
         m_VisibleSources.Clear();
 

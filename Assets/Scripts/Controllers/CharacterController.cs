@@ -2,6 +2,7 @@ using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 namespace Twinfiltration
@@ -11,6 +12,7 @@ namespace Twinfiltration
     {
         [SerializeField] protected ControllerDefinition m_ControllerDefinition;
 
+        protected Animator m_Animator;
         protected Rigidbody m_RigidBody;
         protected Transform m_CharTransform;
         protected CapsuleCollider m_CharCollider;
@@ -30,6 +32,7 @@ namespace Twinfiltration
             m_CharTransform = transform;
             m_RigidBody = gameObject.GetComponent<Rigidbody>();
             m_CharCollider = gameObject.GetComponent<CapsuleCollider>();
+            m_Animator = gameObject.GetComponentInChildren<Animator>();
         }
 
         private void FixedUpdate()

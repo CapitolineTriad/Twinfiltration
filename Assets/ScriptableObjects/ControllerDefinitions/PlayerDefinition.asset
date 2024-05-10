@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: PlayerDefinition
   m_EditorClassIdentifier: 
   AirControl: 0
-  TurnSpeed: 5
+  TurnSpeed: 10
   CharacterLayer:
     serializedVersion: 2
     m_Bits: 8
   TerrainLayer:
     serializedVersion: 2
     m_Bits: 128
-  MaxSpeed: 7.5
-  AirAcceleration: 10
-  GroundAcceleration: 20
+  MaxSpeed: 5
+  AirAcceleration: 3
+  GroundAcceleration: 30
   AccelerationTurnCurve:
     serializedVersion: 2
     m_Curve:
