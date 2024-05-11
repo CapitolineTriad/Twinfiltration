@@ -29,6 +29,14 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             }
         }
 
+        void Awake()
+        {
+            UnityEngine.SceneManagement.SceneManager.activeSceneChanged += (scene1, scene2) =>
+            {
+                this.gameObject.SetActive(false);
+            };
+        }
+
         private NetworkManagerLobby room;
         private NetworkManagerLobby Room
         {
