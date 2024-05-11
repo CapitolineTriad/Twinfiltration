@@ -34,6 +34,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public override void OnStartClient()
         {
+            base.OnStartClient();
             var spawnablePrefabs = Resources.LoadAll<GameObject>("SpawnablePrefabs");
 
             foreach (var prefab in spawnablePrefabs)
@@ -44,18 +45,21 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public override void OnClientConnect()
         {
+            base.OnClientConnect();
             Debug.Log("OnClientConnect");
             OnClientConnected?.Invoke();
         }
 
         public override void OnClientDisconnect()
         {
+            base.OnClientDisconnect();
             Debug.Log("OnClientDisconnect");
             OnClientDisconnected?.Invoke();
         }
 
         public override void OnServerConnect(NetworkConnectionToClient conn)
         {
+            base.OnServerConnect(conn);
             Debug.Log("OnServerConnect");
             if (numPlayers >= maxConnections)
             {
@@ -95,6 +99,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public override void OnServerDisconnect(NetworkConnectionToClient conn)
         {
+            base.OnServerDisconnect(conn);
             Debug.Log("OnServerDisconnect");
             if (conn.identity != null)
             {
@@ -110,6 +115,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public override void OnStopServer()
         {
+            base.OnStopServer();
             OnServerStopped?.Invoke();
 
             RoomPlayers.Clear();
@@ -161,6 +167,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public override void ServerChangeScene(string newSceneName)
         {
+            base.OnServerChangeScene(newSceneName);
             Debug.Log("ServerChangeScene");
             // From menu to game
             if (SceneManager.GetActiveScene().path == menuScene && newSceneName.StartsWith("Scene_Map"))
