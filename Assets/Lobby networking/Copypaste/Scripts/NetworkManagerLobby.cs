@@ -73,6 +73,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public override void OnServerAddPlayer(NetworkConnectionToClient conn)
         {
+            Debug.Log("OnServerAddPlayer");
             if (SceneManager.GetActiveScene().path == menuScene)
             {
                 bool isLeader = RoomPlayers.Count == 0;
@@ -82,6 +83,11 @@ namespace DapperDino.Mirror.Tutorials.Lobby
                 roomPlayerInstance.IsLeader = isLeader;
 
                 NetworkServer.AddPlayerForConnection(conn, roomPlayerInstance.gameObject);
+                Debug.Log("OnServerAddPlayer success");
+            }
+            else
+            {
+                Debug.Log("OnServerAddPlayer failure");
             }
         }
 
@@ -109,6 +115,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public void NotifyPlayersOfReadyState()
         {
+            Debug.Log("Notifying");
             foreach (var player in RoomPlayers)
             {
                 player.HandleReadyToStart(IsReadyToStart());
@@ -117,11 +124,20 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         private bool IsReadyToStart() // TODO: Make this do role-checks too.
         {
-            if (numPlayers < minPlayers) { return false; }
+            if (numPlayers < minPlayers) 
+            {
+                Debug.Log("IsReadyToStart - false, not enough players.");
+                return false; 
+            }
 
             foreach (var player in RoomPlayers)
             {
-                if (!player.IsReady) { return false; }
+                if (!player.IsReady) 
+                {
+                    Debug.Log("IsReadyToStart - false, player not ready");
+
+                    return false; 
+                }
             }
 
             return true;
