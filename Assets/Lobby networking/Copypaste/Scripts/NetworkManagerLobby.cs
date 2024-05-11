@@ -187,8 +187,6 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             }
 
             BasedServerChangeScene(GameplayScene);
-
-           
         }
 
         public override void OnServerSceneChanged(string sceneName)
@@ -199,11 +197,24 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             // Diversity hire wrote this:
             if (sceneName == "Assets/Scenes/Level1.unity")
             {
+                GameObject guard = null;
+                foreach (var obj in spawnPrefabs)
+                {
+                    if (obj.name == "Player2")
+                    {
+                        guard = obj;
+                        break;
+                    }
+                }
+
                 Debug.Log("OnServerChangedScene: yes");
                 for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                 {
                     var conn = RoomPlayers[i].connectionToClient;
-                    var gameplayerInstance = Instantiate(playerPrefab);
+
+                    var playerPrefabToSpawn = i == 0 ? playerPrefab : guard;
+                    var gameplayerInstance = Instantiate(playerPrefabToSpawn);
+
                     //gameplayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
 
                     NetworkServer.Destroy(conn.identity.gameObject);
