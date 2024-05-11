@@ -94,6 +94,14 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             }
             else
             {
+                for (int i = RoomPlayers.Count - 1; i >= 0; i--)
+                {
+                    var connn = RoomPlayers[i].connectionToClient;
+                    var gameplayerInstance = Instantiate(playerPrefab);
+                    //gameplayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
+
+                    NetworkServer.ReplacePlayerForConnection(connn, gameplayerInstance);
+                }
                 Debug.Log("OnServerAddPlayer failure");
             }
         }
