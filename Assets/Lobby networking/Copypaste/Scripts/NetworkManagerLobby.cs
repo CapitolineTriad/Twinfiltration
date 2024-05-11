@@ -185,7 +185,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
                 }
             }
 
-            BasedServerChangeScene(newSceneName);
+            BasedServerChangeScene(GameplayScene);
         }
 
         public override void OnServerSceneChanged(string sceneName)
