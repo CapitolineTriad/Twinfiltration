@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace DapperDino.Mirror.Tutorials.Lobby
 {
-    public class NetworkRoomPlayerLobby : NetworkBehaviour
+    public class NetworkRoomPlayerLobby : NetworkRoomPlayer
     {
         [Header("UI")]
         [SerializeField] private GameObject lobbyUI = null;

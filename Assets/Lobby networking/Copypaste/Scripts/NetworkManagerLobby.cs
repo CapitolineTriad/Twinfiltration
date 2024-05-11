@@ -17,9 +17,6 @@ namespace DapperDino.Mirror.Tutorials.Lobby
         [SerializeField] private int numberOfRounds = 1;
         [SerializeField] private MapSet mapSet = null;
 
-        [Header("Room")]
-        [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab = null;
-
         [Header("Game")]
         [SerializeField] private NetworkGamePlayerLobby gamePlayerPrefab = null;
 
@@ -77,8 +74,8 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             if (SceneManager.GetActiveScene().path == menuScene)
             {
                 bool isLeader = RoomPlayers.Count == 0;
-
-                NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerPrefab);
+                // FUCK IT JUST CAST IT:
+                NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerPrefab) as NetworkRoomPlayerLobby;
 
                 roomPlayerInstance.IsLeader = isLeader;
 
