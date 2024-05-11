@@ -172,21 +172,21 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             BasedServerChangeScene(GameplayScene);
             Debug.Log("ServerChangeScene - name: " + newSceneName);
             // From menu to game
-            /*
+
             if (SceneManager.GetActiveScene().path == menuScene)
             {
                 for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                 {
                     var conn = RoomPlayers[i].connectionToClient;
-                    var gameplayerInstance = Instantiate(playerPrefab);
+                    //var gameplayerInstance = Instantiate(playerPrefab);
                     //gameplayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
 
                     NetworkServer.Destroy(conn.identity.gameObject);
 
-                    NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance);
+                    //NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance);
                 }
             }
-            */
+
         }
 
         public override void OnServerSceneChanged(string sceneName)
