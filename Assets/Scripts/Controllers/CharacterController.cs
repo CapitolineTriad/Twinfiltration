@@ -16,6 +16,7 @@ namespace Twinfiltration
         protected Transform m_CharTransform;
         protected CapsuleCollider m_CharCollider;
 
+        protected bool m_MovementBlocked = false;
         protected bool m_IsAccelerating;
         protected bool m_IsDecelerating;
         protected bool m_IsRunning;
@@ -38,7 +39,8 @@ namespace Twinfiltration
         {
             var deltaTime = Time.fixedDeltaTime;
 
-            GetMovementInput();
+            if (!m_MovementBlocked)
+                GetMovementInput();
 
             ApplyMovement(deltaTime);
         }
@@ -97,6 +99,13 @@ namespace Twinfiltration
 
             var desiredRot = Quaternion.LookRotation(m_TargetDir, Vector3.up);
             m_CharTransform.rotation = Quaternion.RotateTowards(m_CharTransform.rotation, desiredRot, m_ControllerDefinition.TurnSpeed * turnFactor);
+        }
+
+        public void StopCharacter()
+        {
+            m_TargetDir = Vector3.zero;
+            m_GoalVelocity = Vector3.zero;
+            m_RigidBody.velocity = Vector3.zero;
         }
 
         #endregion Physics

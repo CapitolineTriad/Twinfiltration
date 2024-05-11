@@ -52,9 +52,14 @@ namespace LOS
                 {
                     m_LastSeenState = m_Culler.Visibile;
                     foreach (var renderer in m_Renderers)
-                        renderer.enabled = m_LastSeenState;
+                    {
+                        if (renderer.gameObject.layer == 10)
+                            continue;
 
-                    foreach(var renderer in m_StencilRenderers)
+                        renderer.enabled = m_LastSeenState;
+                    }
+
+                    foreach (var renderer in m_StencilRenderers)
                         renderer.enabled = m_LastSeenState;
                     m_IntensityTarget = m_LastSeenState ? 1 : 0;
                 }
@@ -65,7 +70,12 @@ namespace LOS
                 {
                     m_LastSeenState = m_VisibilityInfo.Visibile;
                     foreach (var renderer in m_Renderers)
+                    {
+                        if (renderer.gameObject.layer == 10)
+                            continue;
+
                         renderer.enabled = m_LastSeenState;
+                    }
 
                     foreach (var renderer in m_StencilRenderers)
                         renderer.enabled = m_LastSeenState;

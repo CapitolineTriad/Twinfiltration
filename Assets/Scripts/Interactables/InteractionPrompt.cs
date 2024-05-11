@@ -1,6 +1,8 @@
 using LOS;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Twinfiltration
 {
@@ -12,6 +14,7 @@ namespace Twinfiltration
         [SerializeField] private GameObject m_InteractUI;
         [SerializeField] private TextMeshProUGUI m_InteractText;
         [SerializeField][TextArea(1, 1)] private string m_InteractPrompt = "";
+        [SerializeField] private UnityEvent m_InteractAction;
 
         private LOSVisibilityInfo m_VisibilityInfo;
         private Transform m_CameraTransform;
@@ -55,6 +58,12 @@ namespace Twinfiltration
             var deltaTime = Time.deltaTime;
             var fadeVal = m_CanvasGroup.alpha < m_AlphaTarget ? deltaTime : -deltaTime;
             m_CanvasGroup.alpha += fadeVal * m_FadeSpeed;
+        }
+
+        private void HandleInput()
+        {
+            if (false)
+                m_InteractAction.Invoke();
         }
 
         private void RotateUI()
