@@ -195,7 +195,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
         {
             base.OnServerSceneChanged(sceneName);
             Debug.Log("OnServerChangedScene: sceneName: " + sceneName);
-            if (sceneName == "Level1")
+            if (sceneName == "Assets/Scenes/Level1.unity")
             {
                 for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                 {
