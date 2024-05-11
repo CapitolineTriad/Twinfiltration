@@ -211,6 +211,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             }
         }
 
+        /*
         public override void OnClientSceneChanged()
         {
             //HACK:
@@ -226,7 +227,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             }
 
         }
-
+        */
         public override void OnServerReady(NetworkConnectionToClient conn)
         {
             base.OnServerReady(conn);
