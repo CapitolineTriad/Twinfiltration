@@ -18,7 +18,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
         [SerializeField] private MapSet mapSet = null;
 
         [Header("Room")]
-        [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefabCustom = null;
+        [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab = null;
 
         [Header("Game")]
         [SerializeField] private NetworkGamePlayerLobby gamePlayerPrefab = null;
@@ -78,7 +78,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             {
                 bool isLeader = RoomPlayers.Count == 0;
 
-                NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerPrefabCustom);
+                NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerPrefab);
 
                 roomPlayerInstance.IsLeader = isLeader;
 
