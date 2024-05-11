@@ -219,7 +219,10 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             var objs = GameObject.FindObjectsByType<NetworkRoomPlayerLobby>(FindObjectsSortMode.None);
             foreach (var obj in objs)
             {
-                GameObject.Destroy(obj);
+                if (obj.authority)
+                {
+                    GameObject.Destroy(obj);
+                }
             }
 
         }
