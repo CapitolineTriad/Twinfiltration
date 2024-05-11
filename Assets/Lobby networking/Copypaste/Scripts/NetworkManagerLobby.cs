@@ -78,11 +78,12 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public override void OnServerAddPlayer(NetworkConnectionToClient conn)
         {
-            base.OnServerAddPlayer(conn);
+            //base.OnServerAddPlayer(conn);
             Debug.Log("OnServerAddPlayer");
             if (SceneManager.GetActiveScene().path == menuScene)
             {
                 bool isLeader = RoomPlayers.Count == 0;
+                Debug.Log("IsLeader: " + isLeader);
                 // FUCK IT JUST CAST 
                 NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerPrefab) as NetworkRoomPlayerLobby;
                 Debug.Log(roomPlayerInstance.gameObject.name + " ping", roomPlayerInstance);
@@ -133,6 +134,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         private bool IsReadyToStart() // TODO: Make this do role-checks too.
         {
+            Debug.Log("IsReadyToStart: numplayers:minPlayers: " + numPlayers + " " + minPlayers);
             if (numPlayers < minPlayers) 
             {
                 Debug.Log("IsReadyToStart - false, not enough players.");
@@ -167,10 +169,9 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public override void ServerChangeScene(string newSceneName)
         {
-            base.OnServerChangeScene(newSceneName);
-            Debug.Log("ServerChangeScene");
+            Debug.Log("ServerChangeScene - name: " + newSceneName);
             // From menu to game
-            if (SceneManager.GetActiveScene().path == menuScene && newSceneName.StartsWith("Scene_Map"))
+            if (SceneManager.GetActiveScene().path == menuScene)
             {
                 for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                 {
@@ -184,7 +185,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
                 }
             }
 
-            base.ServerChangeScene(newSceneName);
+            BasedServerChangeScene(GameplayScene);
         }
 
         public override void OnServerSceneChanged(string sceneName)

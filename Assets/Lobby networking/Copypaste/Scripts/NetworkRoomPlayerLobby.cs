@@ -9,8 +9,8 @@ namespace DapperDino.Mirror.Tutorials.Lobby
     {
         [Header("UI")]
         [SerializeField] private GameObject lobbyUI = null;
-        [SerializeField] private TMP_Text[] playerNameTexts = new TMP_Text[4];
-        [SerializeField] private TMP_Text[] playerReadyTexts = new TMP_Text[4];
+        [SerializeField] private TMP_Text[] playerNameTexts = new TMP_Text[2];
+        [SerializeField] private TMP_Text[] playerReadyTexts = new TMP_Text[2];
         [SerializeField] private Button startGameButton = null;
 
         [SyncVar(hook = nameof(HandleDisplayNameChanged))]
@@ -18,6 +18,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
         [SyncVar(hook = nameof(HandleReadyStatusChanged))]
         public bool IsReady = false;
 
+        [SerializeField]
         private bool isLeader;
         public bool IsLeader
         {
@@ -95,6 +96,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public void HandleReadyToStart(bool readyToStart)
         {
+            Debug.Log("HandleReadyToStart + IsLeader: " + readyToStart + " " + isLeader);
             if (!isLeader) { return; }
 
             startGameButton.interactable = readyToStart;

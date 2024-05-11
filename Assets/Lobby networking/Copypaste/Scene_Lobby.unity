@@ -381,8 +381,8 @@ MonoBehaviour:
   evaluationMethod: 0
   evaluationInterval: 3
   timeInterpolationGui: 0
-  showRoomGUI: 1
-  minPlayers: 0
+  showRoomGUI: 0
+  minPlayers: 2
   roomPlayerPrefab: {fileID: 5494571419773178487, guid: 255bd50c0b57afc4489a3dad8dd9d0a7, type: 3}
   RoomScene: Assets/Lobby networking/Copypaste/Scene_Lobby.unity
   GameplayScene: Assets/Scenes/Level1.unity
@@ -778,6 +778,26 @@ PrefabInstance:
     - target: {fileID: 3048221819021157609, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
       propertyPath: m_Name
       value: UI_MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680616506041721918, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
+      propertyPath: m_text
+      value: TWINFILTRATION
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680616506041721918, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680616506041721918, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680616506041721918, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680616506041721918, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3876837612913725580, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
       propertyPath: m_textInfo.lineCount

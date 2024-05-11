@@ -354,6 +354,11 @@ namespace Mirror
             base.ServerChangeScene(newSceneName);
         }
 
+        public void BasedServerChangeScene(string newSceneName)
+        {
+            base.ServerChangeScene(newSceneName);
+        }
+
         /// <summary>
         /// Called on the server when a scene is completed loaded, when the scene load was initiated by the server with ServerChangeScene().
         /// </summary>
