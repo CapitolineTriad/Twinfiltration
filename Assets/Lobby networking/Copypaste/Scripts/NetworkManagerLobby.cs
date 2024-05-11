@@ -211,11 +211,17 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             }
         }
 
-        public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnectionToClient conn, GameObject roomPlayer, GameObject gamePlayer)
+        public override void OnClientSceneChanged()
         {
-            Debug.LogWarning("Destroying RoomPlayer " + roomPlayer.name);
-            Destroy(roomPlayer, 1); // Mandatory
-            return true;
+            //HACK:
+            Debug.Log("OnClientSceneChanged: yes");
+
+            var objs = GameObject.FindObjectsByType<NetworkRoomPlayerLobby>(FindObjectsSortMode.None);
+            foreach (var obj in objs)
+            {
+                GameObject.Destroy(obj);
+            }
+
         }
 
         public override void OnServerReady(NetworkConnectionToClient conn)
