@@ -63,8 +63,9 @@ namespace DapperDino.Mirror.Tutorials.Lobby
                 return;
             }
 
-            if (SceneManager.GetActiveScene().name != menuScene)
+            if (SceneManager.GetActiveScene().path != menuScene)
             {
+                Debug.Log(SceneManager.GetActiveScene().path + " != " + menuScene);
                 conn.Disconnect();
                 return;
             }
@@ -72,7 +73,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public override void OnServerAddPlayer(NetworkConnectionToClient conn)
         {
-            if (SceneManager.GetActiveScene().name == menuScene)
+            if (SceneManager.GetActiveScene().path == menuScene)
             {
                 bool isLeader = RoomPlayers.Count == 0;
 
@@ -128,7 +129,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public void StartGame()
         {
-            if (SceneManager.GetActiveScene().name == menuScene)
+            if (SceneManager.GetActiveScene().path == menuScene)
             {
                 if (!IsReadyToStart()) { return; }
 
@@ -141,7 +142,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
         public override void ServerChangeScene(string newSceneName)
         {
             // From menu to game
-            if (SceneManager.GetActiveScene().name == menuScene && newSceneName.StartsWith("Scene_Map"))
+            if (SceneManager.GetActiveScene().path == menuScene && newSceneName.StartsWith("Scene_Map"))
             {
                 for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                 {
