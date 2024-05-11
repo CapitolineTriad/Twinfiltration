@@ -211,8 +211,8 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             }
         }
 
-        /*
-        public override void OnClientSceneChanged()
+        
+        public override void OnRoomClientSceneChanged()
         {
             //HACK:
             Debug.Log("OnClientSceneChanged: yes");
@@ -225,9 +225,8 @@ namespace DapperDino.Mirror.Tutorials.Lobby
                     GameObject.Destroy(obj);
                 }
             }
-
         }
-        */
+        
         public override void OnServerReady(NetworkConnectionToClient conn)
         {
             base.OnServerReady(conn);
