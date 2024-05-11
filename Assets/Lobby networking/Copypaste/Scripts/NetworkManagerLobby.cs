@@ -209,16 +209,12 @@ namespace DapperDino.Mirror.Tutorials.Lobby
                     NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance);
                 }
             }
-            NukeAll();
         }
-
-        [ClientRpc]
-        public void NukeAll()
+        public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnectionToClient conn, GameObject roomPlayer, GameObject gamePlayer)
         {
-            foreach (var bleh in GameObject.FindObjectsByType<NetworkRoomPlayerLobby>(FindObjectsSortMode.None))
-            {
-                Destroy(bleh);
-            }
+            Debug.LogWarning("Destroying RoomPlayer " + roomPlayer.name);
+            Destroy(roomPlayer, 1); // Mandatory
+            return true;
         }
 
         public override void OnServerReady(NetworkConnectionToClient conn)
