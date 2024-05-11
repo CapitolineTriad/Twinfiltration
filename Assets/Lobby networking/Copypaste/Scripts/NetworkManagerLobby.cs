@@ -59,6 +59,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             Debug.Log("OnServerConnect");
             if (numPlayers >= maxConnections)
             {
+                Debug.Log("numPlayers over max, disconnecting the new guy");
                 conn.Disconnect();
                 return;
             }
@@ -73,13 +74,14 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public override void OnServerAddPlayer(NetworkConnectionToClient conn)
         {
+            base.OnServerAddPlayer(conn);
             Debug.Log("OnServerAddPlayer");
             if (SceneManager.GetActiveScene().path == menuScene)
             {
                 bool isLeader = RoomPlayers.Count == 0;
                 // FUCK IT JUST CAST 
                 NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerPrefab) as NetworkRoomPlayerLobby;
-
+                Debug.Log(roomPlayerInstance.gameObject.name + " ping", roomPlayerInstance);
                 roomPlayerInstance.IsLeader = isLeader;
 
                 NetworkServer.AddPlayerForConnection(conn, roomPlayerInstance.gameObject);
