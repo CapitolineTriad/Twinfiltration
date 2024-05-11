@@ -78,7 +78,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public override void OnServerAddPlayer(NetworkConnectionToClient conn)
         {
-            base.OnServerAddPlayer(conn);
+            //base.OnServerAddPlayer(conn);
             Debug.Log("OnServerAddPlayer");
             if (SceneManager.GetActiveScene().path == menuScene)
             {

@@ -18,6 +18,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
         [SyncVar(hook = nameof(HandleReadyStatusChanged))]
         public bool IsReady = false;
 
+        [SerializeField]
         private bool isLeader;
         public bool IsLeader
         {
