@@ -44,16 +44,19 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public override void OnClientConnect()
         {
+            Debug.Log("OnClientConnect");
             OnClientConnected?.Invoke();
         }
 
         public override void OnClientDisconnect()
         {
+            Debug.Log("OnClientDisconnect");
             OnClientDisconnected?.Invoke();
         }
 
         public override void OnServerConnect(NetworkConnectionToClient conn)
         {
+            Debug.Log("OnServerConnect");
             if (numPlayers >= maxConnections)
             {
                 conn.Disconnect();
@@ -74,7 +77,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             if (SceneManager.GetActiveScene().path == menuScene)
             {
                 bool isLeader = RoomPlayers.Count == 0;
-                // FUCK IT JUST CAST IT:
+                // FUCK IT JUST CAST 
                 NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerPrefab) as NetworkRoomPlayerLobby;
 
                 roomPlayerInstance.IsLeader = isLeader;
@@ -90,6 +93,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public override void OnServerDisconnect(NetworkConnectionToClient conn)
         {
+            Debug.Log("OnServerDisconnect");
             if (conn.identity != null)
             {
                 var player = conn.identity.GetComponent<NetworkRoomPlayerLobby>();
@@ -136,12 +140,13 @@ namespace DapperDino.Mirror.Tutorials.Lobby
                     return false; 
                 }
             }
-
+            Debug.Log("IsReadyToStart - true");
             return true;
         }
 
         public void StartGame()
         {
+            Debug.Log("StartGame");
             if (SceneManager.GetActiveScene().path == menuScene)
             {
                 if (!IsReadyToStart()) { return; }
@@ -154,6 +159,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public override void ServerChangeScene(string newSceneName)
         {
+            Debug.Log("ServerChangeScene");
             // From menu to game
             if (SceneManager.GetActiveScene().path == menuScene && newSceneName.StartsWith("Scene_Map"))
             {
