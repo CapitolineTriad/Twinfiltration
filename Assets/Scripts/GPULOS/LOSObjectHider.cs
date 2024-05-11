@@ -1,46 +1,79 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics.Tracing;
+using UnityEngine;
 
 namespace LOS
 {
     /// <summary>
     /// Disables a gameobjects renderer if the object is outside the line of sight
     /// </summary>
-    [RequireComponent(typeof(LOS.LOSCuller))]
     [AddComponentMenu("Line of Sight/LOS Object Hider")]
     public class LOSObjectHider : MonoBehaviour
     {
         private LOSCuller m_Culler;
         private LOSVisibilityInfo m_VisibilityInfo;
 
+        private Renderer[] m_Renderers;
+        private LOSStencilRenderer[] m_StencilRenderers;
+        private LOSSource[] m_LOSSources;
+
         private void OnEnable()
         {
-            m_Culler = GetComponent<LOSCuller>();
-
-            enabled &= Util.Verify(m_Culler != null, "LOS culler component missing.");
-            enabled &= Util.Verify(GetComponent<Renderer>() != null, "No renderer attached to this GameObject! LOS Culler component must be added to a GameObject containing a MeshRenderer or Skinned Mesh Renderer!");
         }
 
         private void Start()
         {
             m_VisibilityInfo = GetComponent<LOSVisibilityInfo>();
 
-            // Disable LOSCuller script and use Visibilty Info instead if both are present
-            if (m_VisibilityInfo != null && m_VisibilityInfo.isActiveAndEnabled)
-            {
-                m_Culler.enabled = false;
-            }
+            m_Renderers = GetComponentsInChildren<Renderer>();
+            m_StencilRenderers = GetComponentsInChildren<LOSStencilRenderer>();
+            m_LOSSources = GetComponentsInChildren<LOSSource>();
         }
 
+        private void UpdateLOSIndicators(float deltaTime)
+        {
+            if (m_MaskIntensity == m_IntensityTarget)
+                return;
+
+            float changeRate = (m_IntensityTarget > m_MaskIntensity ? deltaTime : -deltaTime) * 5;
+            m_MaskIntensity = Mathf.Clamp(m_MaskIntensity + changeRate, 0.0f, 1.0f);
+            foreach(var source in m_LOSSources)
+                source.MaskIntensity = m_MaskIntensity;
+        }
+
+        private bool m_LastSeenState = true;
+        private float m_MaskIntensity = 0.01f; // so they get hidden on spawn, wouldn't update otherwise
+        private float m_IntensityTarget = 0f;
         private void LateUpdate()
         {
-            if (m_Culler.enabled)
+            var deltaTime = Time.unscaledDeltaTime;
+            if (m_Culler != null && m_Culler.enabled)
             {
-                GetComponent<Renderer>().enabled = m_Culler.Visibile;
+                if (m_LastSeenState != m_Culler.Visibile)
+                {
+                    m_LastSeenState = m_Culler.Visibile;
+                    foreach (var renderer in m_Renderers)
+                        renderer.enabled = m_LastSeenState;
+
+                    foreach(var renderer in m_StencilRenderers)
+                        renderer.enabled = m_LastSeenState;
+                    m_IntensityTarget = m_LastSeenState ? 1 : 0;
+                }
             }
             else if (m_VisibilityInfo != null && m_VisibilityInfo.isActiveAndEnabled)
             {
-                GetComponent<Renderer>().enabled = m_VisibilityInfo.Visibile;
+                if (m_LastSeenState != m_VisibilityInfo.Visibile)
+                {
+                    m_LastSeenState = m_VisibilityInfo.Visibile;
+                    foreach (var renderer in m_Renderers)
+                        renderer.enabled = m_LastSeenState;
+
+                    foreach (var renderer in m_StencilRenderers)
+                        renderer.enabled = m_LastSeenState;
+                    m_IntensityTarget = m_LastSeenState ? 1 : 0;
+                }
             }
+
+            UpdateLOSIndicators(deltaTime);
         }
     }
 }

@@ -37,9 +37,6 @@ namespace Twinfiltration
 
         private void FixedUpdate()
         {
-            if (!isLocalPlayer)
-                return;
-
             var deltaTime = Time.fixedDeltaTime;
 
             GetMovementInput();
@@ -47,13 +44,13 @@ namespace Twinfiltration
             ApplyMovement(deltaTime);
         }
 
-        private void OnCollisionEnter(Collision collision)
+        protected virtual void OnCollisionEnter(Collision collision)
         {
-            if (collision.collider.gameObject.layer ==  Mathf.Log(m_ControllerDefinition.TerrainLayer, 2)) // MAKE WALLS NOT TERRAIN
+            if (collision.collider.gameObject.layer ==  Mathf.Log(m_ControllerDefinition.TerrainLayer, 2))
                 m_IsGrounded = true;
         }
 
-        private void OnCollisionExit(Collision collision)
+        protected virtual void OnCollisionExit(Collision collision)
         {
             if (collision.collider.gameObject.layer == Mathf.Log(m_ControllerDefinition.TerrainLayer, 2))
                 m_IsGrounded = false;

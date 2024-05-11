@@ -10,6 +10,14 @@ namespace LOS
         [SerializeField]
         private LayerMask m_RaycastLayerMask = -1;
 
+        [Tooltip("Will be registered as invisible when not seen by a LOS camera with this tag. Empty means it's revealed when any LOS camera sees it.")]
+        [SerializeField]
+        private string m_SeenByTag = string.Empty;
+
+        [Tooltip("The mesh renderer that should determine the actor's visibility.")]
+        [SerializeField]
+        private Renderer m_MeshRenderer;
+
         private List<ILOSSource> m_VisibleSources = new List<ILOSSource>();
 
         public List<ILOSSource> VisibleSources
@@ -44,7 +52,7 @@ namespace LOS
 
         private void OnEnable()
         {
-            enabled &= Util.Verify(GetComponent<Renderer>() != null, "No renderer attached to this GameObject! LOS Culler component must be added to a GameObject containing a MeshRenderer or Skinned Mesh Renderer!");
+            enabled &= Util.Verify(m_MeshRenderer != null, "No renderer attached to this GameObject! LOS Culler component must be added to a GameObject containing a MeshRenderer or Skinned Mesh Renderer!");
         }
 
         private void Update()
@@ -59,7 +67,7 @@ namespace LOS
         /// </summary>
         private void UpdateVisibleSources()
         {
-            Bounds meshBounds = gameObject.GetComponent<Renderer>().bounds;
+            Bounds meshBounds = m_MeshRenderer.bounds;
 
             // Get list of sources.
             List<LOSSource> losSources = LOSManager.Instance.LOSSources;
@@ -68,7 +76,7 @@ namespace LOS
             {
                 LOSSource losSource = losSources[i];
 
-                bool isVisible = LOSHelper.CheckBoundsVisibility(losSource, meshBounds, m_RaycastLayerMask.value);
+                bool isVisible = LOSHelper.CheckBoundsVisibility(losSource, meshBounds, m_RaycastLayerMask.value, m_SeenByTag);
 
                 UpdateList(losSource, isVisible);
             }

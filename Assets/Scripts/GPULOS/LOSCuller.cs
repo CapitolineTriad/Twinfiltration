@@ -10,6 +10,7 @@ namespace LOS
         [SerializeField]
         private LayerMask m_RaycastLayerMask = -1;
 
+        [Tooltip("Renderer will be culled when not seen by a LOS camera with this tag. Empty means it's revealed when any LOS camera sees it.")]
         [SerializeField]
         private string m_SeenByTag = string.Empty;
 

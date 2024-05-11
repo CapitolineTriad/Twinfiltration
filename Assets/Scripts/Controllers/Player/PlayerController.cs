@@ -24,6 +24,9 @@ namespace Twinfiltration
 
         protected override void GetMovementInput()
         {
+            if (!isLocalPlayer)
+                return;
+
             var viewYaw = Quaternion.Euler(0, m_Camera.rotation.eulerAngles.y, 0);
             float x = Input.GetAxisRaw("Horizontal");
             float z = Input.GetAxisRaw("Vertical");
@@ -33,14 +36,6 @@ namespace Twinfiltration
                 m_TargetDir.Normalize();
 
             m_Animator.SetBool("IsMoving", m_TargetDir.magnitude > 0);
-        }
-
-        private void OnDrawGizmos()
-        {
-            if (m_CharTransform is null)
-                return;
-
-            Debug.DrawRay(m_CharTransform.position, m_CharTransform.forward, Color.green);
         }
     }
 }
