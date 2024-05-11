@@ -779,6 +779,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_MainMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 3680616506041721918, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
+      propertyPath: m_text
+      value: TWINFILTRATION
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680616506041721918, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680616506041721918, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680616506041721918, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3680616506041721918, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3876837612913725580, guid: 550b06e28221ae64ca5d2a1fbcf77040, type: 3}
       propertyPath: m_textInfo.lineCount
       value: 0

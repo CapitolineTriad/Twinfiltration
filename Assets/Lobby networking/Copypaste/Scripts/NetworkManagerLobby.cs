@@ -169,10 +169,9 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public override void ServerChangeScene(string newSceneName)
         {
-            base.OnServerChangeScene(newSceneName);
-            Debug.Log("ServerChangeScene");
+            Debug.Log("ServerChangeScene - name: " + newSceneName);
             // From menu to game
-            if (SceneManager.GetActiveScene().path == menuScene && newSceneName.StartsWith("Scene_Map"))
+            if (SceneManager.GetActiveScene().path == menuScene)
             {
                 for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                 {
@@ -186,7 +185,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
                 }
             }
 
-            base.ServerChangeScene(newSceneName);
+            BasedServerChangeScene(newSceneName);
         }
 
         public override void OnServerSceneChanged(string sceneName)
