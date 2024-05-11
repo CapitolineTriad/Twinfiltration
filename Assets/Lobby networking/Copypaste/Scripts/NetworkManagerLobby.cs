@@ -187,11 +187,27 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             }
 
             BasedServerChangeScene(GameplayScene);
+
+           
         }
 
         public override void OnServerSceneChanged(string sceneName)
         {
             base.OnServerSceneChanged(sceneName);
+            Debug.Log("OnServerChangedScene: sceneName: " + sceneName);
+            if (sceneName == "Level1")
+            {
+                for (int i = RoomPlayers.Count - 1; i >= 0; i--)
+                {
+                    var conn = RoomPlayers[i].connectionToClient;
+                    var gameplayerInstance = Instantiate(playerPrefab);
+                    //gameplayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
+
+                    //NetworkServer.Destroy(conn.identity.gameObject);
+
+                    NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance);
+                }
+            }
         }
 
         public override void OnServerReady(NetworkConnectionToClient conn)
