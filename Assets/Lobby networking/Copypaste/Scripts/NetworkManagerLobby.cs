@@ -210,6 +210,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
                 }
             }
         }
+
         public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnectionToClient conn, GameObject roomPlayer, GameObject gamePlayer)
         {
             Debug.LogWarning("Destroying RoomPlayer " + roomPlayer.name);
