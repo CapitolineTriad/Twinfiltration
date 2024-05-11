@@ -195,6 +195,8 @@ namespace DapperDino.Mirror.Tutorials.Lobby
         {
             base.OnServerSceneChanged(sceneName);
             Debug.Log("OnServerChangedScene: sceneName: " + sceneName);
+
+            // Diversity hire wrote this:
             if (sceneName == "Assets/Scenes/Level1.unity")
             {
                 Debug.Log("OnServerChangedScene: yes");
@@ -207,22 +209,6 @@ namespace DapperDino.Mirror.Tutorials.Lobby
                     NetworkServer.Destroy(conn.identity.gameObject);
 
                     NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance);
-                }
-            }
-        }
-
-        
-        public override void OnRoomClientSceneChanged()
-        {
-            //HACK:
-            Debug.Log("OnClientSceneChanged: yes");
-
-            var objs = GameObject.FindObjectsByType<NetworkRoomPlayerLobby>(FindObjectsSortMode.None);
-            foreach (var obj in objs)
-            {
-                if (obj.authority)
-                {
-                    GameObject.Destroy(obj);
                 }
             }
         }
