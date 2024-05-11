@@ -197,6 +197,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             Debug.Log("OnServerChangedScene: sceneName: " + sceneName);
             if (sceneName == "Assets/Scenes/Level1.unity")
             {
+                Debug.Log("OnServerChangedScene: yes");
                 for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                 {
                     var conn = RoomPlayers[i].connectionToClient;
