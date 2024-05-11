@@ -176,12 +176,12 @@ namespace DapperDino.Mirror.Tutorials.Lobby
                 for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                 {
                     var conn = RoomPlayers[i].connectionToClient;
-                    var gameplayerInstance = Instantiate(gamePlayerPrefab);
-                    gameplayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
+                    var gameplayerInstance = Instantiate(playerPrefab);
+                    //gameplayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
 
                     NetworkServer.Destroy(conn.identity.gameObject);
 
-                    NetworkServer.ReplacePlayerForConnection(conn, playerPrefab.gameObject);
+                    NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance);
                 }
             }
 
