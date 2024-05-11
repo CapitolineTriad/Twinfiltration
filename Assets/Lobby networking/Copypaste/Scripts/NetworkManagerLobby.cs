@@ -83,6 +83,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
             if (SceneManager.GetActiveScene().path == menuScene)
             {
                 bool isLeader = RoomPlayers.Count == 0;
+                Debug.Log("IsLeader: " + isLeader);
                 // FUCK IT JUST CAST 
                 NetworkRoomPlayerLobby roomPlayerInstance = Instantiate(roomPlayerPrefab) as NetworkRoomPlayerLobby;
                 Debug.Log(roomPlayerInstance.gameObject.name + " ping", roomPlayerInstance);
@@ -133,6 +134,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         private bool IsReadyToStart() // TODO: Make this do role-checks too.
         {
+            Debug.Log("IsReadyToStart: numplayers:minPlayers: " + numPlayers + " " + minPlayers);
             if (numPlayers < minPlayers) 
             {
                 Debug.Log("IsReadyToStart - false, not enough players.");

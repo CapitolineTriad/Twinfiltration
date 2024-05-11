@@ -95,6 +95,7 @@ namespace DapperDino.Mirror.Tutorials.Lobby
 
         public void HandleReadyToStart(bool readyToStart)
         {
+            Debug.Log("HandleReadyToStart + IsLeader: " + readyToStart + " " + isLeader);
             if (!isLeader) { return; }
 
             startGameButton.interactable = readyToStart;
