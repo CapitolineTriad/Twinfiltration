@@ -358,7 +358,7 @@ MonoBehaviour:
   onlineScene: 
   transport: {fileID: 1495594497}
   networkAddress: localhost
-  maxConnections: 2
+  maxConnections: 3
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
@@ -389,7 +389,7 @@ MonoBehaviour:
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0
-  menuScene: 
+  menuScene: Assets/Lobby networking/Copypaste/Scene_Lobby.unity
   numberOfRounds: 1
   mapSet: {fileID: 11400000, guid: 4d796735ff1ac734d816cc7aeab5f928, type: 2}
   roomPlayerPrefabCustom: {fileID: 5494571419773178487, guid: 255bd50c0b57afc4489a3dad8dd9d0a7, type: 3}
