@@ -120,13 +120,12 @@ namespace Twinfiltration
                     else
                     {
                         var curDesRestpoint = RestPointPath[_currRestPointPathIndex].position;
-                        var planePos3 = new Vector2(transform.position.x, transform.position.z);
-                        var curDestinationPlanePos33 = new Vector2(curDesRestpoint.x, curDesRestpoint.z);
-                        if (Vector2.Distance(planePos3, curDestinationPlanePos33) < 0.05f)
+                        var currentRestPointPathPosition = new Vector2(transform.position.x, transform.position.z);
+                        var currentDestionationPlanePos = new Vector2(curDesRestpoint.x, curDesRestpoint.z);
+                        if (Vector3.Distance(currentRestPointPathPosition, currentDestionationPlanePos) < 0.1f)
                         {
                             StopCharacter();
                             _currRestPointPathIndex++;
-                            _currRestPointPathIndex = Mathf.Min(_currRestPointPathIndex, RestPointPath.Length);
                             curDestination = RestPointPath[_currRestPointPathIndex].position;
                         }
                     }
