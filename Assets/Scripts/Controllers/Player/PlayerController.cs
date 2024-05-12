@@ -21,9 +21,6 @@ namespace Twinfiltration
         [SerializeField] AudioSource _gameMusic;
         [SerializeField] AudioClip[] _saluteAudioClips;
 
-        [SerializeField] AudioSource _plantAudioSource;
-
-
         private static System.Random m_RandNumGen;
 
         protected override void Awake()
@@ -96,8 +93,6 @@ namespace Twinfiltration
                     Instantiate(m_TrackerPrefab, devicePos, m_CharTransform.rotation);
                     m_AbilityUses -= 1;
                     m_AbilityUI.m_CurrFill = m_AbilityUses;
-
-                    _plantAudioSource?.Play();
                 }
             }
         }
