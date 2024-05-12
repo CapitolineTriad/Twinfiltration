@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -62,9 +63,9 @@ namespace Twinfiltration
                     if (isHacking)
                         lastPrompt.gameObject.SetActive(false);
                     m_TimerLastFrame = m_MovementBlockTimer;
-                    m_Animator.SetBool("IsPlantingDevice", false);
-                    m_Animator.SetBool("IsSaluting", false);
-                    m_Animator.SetBool("IsInteracting", false);
+                    SetAnimBoolServer("IsPlantingDevice", false);
+                    SetAnimBoolServer("IsSaluting", false);
+                    SetAnimBoolServer("IsInteracting", false);
                     // need to send an update event for all client animators here, probably
                     m_MovementBlocked = false;
                 }
@@ -79,7 +80,7 @@ namespace Twinfiltration
                     devicePos.y = hitInfo.point.y;
                     m_MovementBlocked = true;
                     StopCharacter();
-                    m_Animator.SetBool("IsPlantingDevice", true); // need to send an update event for all client animators here, probably
+                    SetAnimBoolServer("IsPlantingDevice", true); // need to send an update event for all client animators here, probably
                     m_MovementBlockTimer = 1.1f;
                     Instantiate(m_TrackerPrefab, devicePos, m_CharTransform.rotation);
                     m_AbilityUses -= 1;
@@ -112,7 +113,7 @@ namespace Twinfiltration
         {
             m_MovementBlocked = true;
             StopCharacter();
-            m_Animator.SetBool("IsSaluting", true); // need to send an update event for all client animators here, probably
+            SetAnimBoolServer("IsSaluting", true); // need to send an update event for all client animators here, probably
             m_MovementBlockTimer = 1.7f;
             m_AbilityUses -= 1;
             m_AbilityUI.m_CurrFill = m_AbilityUses;
@@ -146,7 +147,7 @@ namespace Twinfiltration
             m_CharTransform.rotation = Quaternion.Euler(currentRot.x, eulerRot.y, currentRot.z);
             m_MovementBlocked = true;
             StopCharacter();
-            m_Animator.SetBool("IsInteracting", true); // need to send an update event for all client animators here, probably
+            SetAnimBoolServer("IsInteracting", true); // need to send an update event for all client animators here, probably
             m_MovementBlockTimer = 6f;
         }
 
@@ -173,7 +174,19 @@ namespace Twinfiltration
             }
             else m_TargetDir = Vector3.zero;
 
-            m_Animator.SetBool("IsMoving", m_TargetDir.magnitude > 0);
+            SetAnimBoolServer("IsMoving", m_TargetDir.magnitude > 0);
+        }
+
+        [Command(requiresAuthority = false)]
+        private void SetAnimBoolServer(string name, bool value)
+        {
+            SetAnimBoolClients(name, value);
+        }
+
+        [ClientRpc]
+        private void SetAnimBoolClients(string name, bool value)
+        {
+            m_Animator.SetBool(name, value);
         }
     }
 }
