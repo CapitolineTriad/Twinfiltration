@@ -123,10 +123,8 @@ namespace Twinfiltration
                         if (Vector2.Distance(planePos3, curDestinationPlanePos33) < 0.05f)
                         {
                             StopCharacter();
-                            if (!(_currRestPointPathIndex == RestPointPath.Length - 1))
-                            {
-                                _currRestPointPathIndex++;
-                            }
+
+                            _currRestPointPathIndex = Mathf.Clamp(_currRestPointPathIndex, _currRestPointPathIndex + 1, RestPointPath.Length);
                             curDestination = RestPointPath[_currRestPointPathIndex].position;
                         }
                     }
