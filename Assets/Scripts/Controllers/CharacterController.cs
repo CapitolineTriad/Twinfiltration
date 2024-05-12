@@ -9,11 +9,13 @@ namespace Twinfiltration
     [RequireComponent(typeof(CapsuleCollider), typeof(Rigidbody))]
     public class CharacterController : NetworkBehaviour
     {
+        private static System.Random m_RandNumGen2;
+
         [SerializeField] protected ControllerDefinition m_ControllerDefinition;
 
-        [HideInInspector]public Animator m_Animator;
+        [HideInInspector] public Animator m_Animator;
         protected Rigidbody m_RigidBody;
-        [HideInInspector]public Transform m_CharTransform;
+        [HideInInspector] public Transform m_CharTransform;
         protected CapsuleCollider m_CharCollider;
 
         protected bool m_MovementBlocked = false;
@@ -24,11 +26,15 @@ namespace Twinfiltration
         protected bool m_IsJumping;
         protected bool m_IsGrounded = true;
 
+        [SerializeField] AudioSource _stepSource;
+        [SerializeField] AudioClip[] _audioSourceClips;
 
         #region Callbacks
 
         protected virtual void Awake()
         {
+            if (m_RandNumGen2 == null)
+                m_RandNumGen2 = new System.Random();
             m_CharTransform = transform;
             m_RigidBody = gameObject.GetComponent<Rigidbody>();
             m_CharCollider = gameObject.GetComponent<CapsuleCollider>();
@@ -68,6 +74,8 @@ namespace Twinfiltration
         }
 
         private Vector3 m_GoalVelocity = Vector3.zero;
+
+
         private void ApplyMovement(float deltaTime)
         {
             if (!m_IsGrounded && !m_ControllerDefinition.AirControl)
@@ -89,6 +97,16 @@ namespace Twinfiltration
             var neededAccel = (m_GoalVelocity - new Vector3(m_RigidBody.velocity.x, 0, m_RigidBody.velocity.z)) / deltaTime;
 
             m_RigidBody.AddForce(Vector3.Scale(neededAccel * m_RigidBody.mass, m_ControllerDefinition.MovementForceScale));
+
+            if (_stepSource != null && _audioSourceClips.Length > 0)
+            {
+                if (_stepSource.isPlaying && m_RigidBody.velocity.magnitude > 0.2f)
+                {
+                    var clip = _audioSourceClips[m_RandNumGen2.Next(_audioSourceClips.Length)];
+                    _stepSource.clip = clip; 
+                    _stepSource.Play();
+                }
+            }
         }
 
         private void ApplyRotation(float turnFactor)

@@ -200,12 +200,17 @@ namespace Twinfiltration
         string lastPromptTag;
         InteractPrompt lastPrompt;
         [SerializeField] AudioSource _guardSaluteAudio;
+        [SerializeField] AudioSource _hackingAudioSource;
 
         public void TriggerHacking(Transform console, InteractPrompt prompt, string consoleTag)
         {
             lastPromptTag = consoleTag;
             lastPrompt = prompt;
             isHacking = true;
+            if (_hackingAudioSource != null)
+            {
+                _hackingAudioSource.Play();
+            }
             Vector3 toConsole = console.position - m_CharTransform.position;
             var eulerRot = Quaternion.LookRotation(toConsole, Vector3.up).eulerAngles;
             var currentRot = m_CharTransform.rotation.eulerAngles;
