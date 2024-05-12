@@ -21,6 +21,10 @@ namespace Twinfiltration
 
         [SerializeField] AudioSource _detectionAudio;
 
+        [SerializeField] AudioSource _gameOverAudio;
+        [SerializeField] GameObject _gameOverUI;
+        
+
         private void Awake()
         {
             m_Transform = transform;
@@ -69,7 +73,7 @@ namespace Twinfiltration
             // AAAAAAAAAAA DIE DEI DEID DIEDIE DIE
             // trigger gaem ovah
             var p1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerController>();
-            //var p2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerController>();
+            var p2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerController>();
             var guard = m_VisibilityInfo.VisibleSources[0].GameObject.transform.parent.parent.GetComponent<EnemyController>(); // lol
 
             for(int i=1; i < m_VisibilityInfo.VisibleSources.Count; i++)
@@ -79,10 +83,11 @@ namespace Twinfiltration
             }
 
             p1.TriggerGameOver(guard);
-            //p2.TriggerGameOver(guard);
+            p2.TriggerGameOver(guard);
             guard.TriggerGameOver(p1);
 
             // GAME OVER SCREEN TRIGGERED HERE
+            _gameOverAudio.Play();
 
         }
 

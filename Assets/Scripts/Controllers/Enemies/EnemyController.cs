@@ -13,7 +13,8 @@ namespace Twinfiltration
         {
             Circular,
             BackAndForth,
-            RestPoint
+            RestPoint,
+            StandStill
         }
 
         private static System.Random m_RandNumGen;
@@ -61,6 +62,10 @@ namespace Twinfiltration
         [Server]
         protected override void GetMovementInput()
         {
+            if (activePathType == PathType.StandStill)
+            {
+                return;
+            }
             if (m_MovementBlocked)
             {
                 return;
