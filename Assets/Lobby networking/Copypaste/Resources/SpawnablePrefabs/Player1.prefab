@@ -368,6 +368,7 @@ MonoBehaviour:
   m_TrackerPrefab: {fileID: 1588204732025203894, guid: 5cccafecb02668146b80ff48965462e6, type: 3}
   m_AbilityUses: 3
   _gameOverUI: {fileID: 3242564828275531960}
+  _gameMusic: {fileID: 1791510780331177241}
   m_IsTimerRunning: 0
 --- !u!114 &3523898213886992826
 MonoBehaviour:
