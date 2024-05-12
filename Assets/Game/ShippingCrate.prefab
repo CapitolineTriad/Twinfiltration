@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2016637516022540100}
   - component: {fileID: 1992541061740054920}
   - component: {fileID: 1598628468185806937}
+  - component: {fileID: 7493302475243366946}
   m_Layer: 8
   m_Name: ShippingCrate
   m_TagString: Untagged
@@ -377,3 +378,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!208 &7493302475243366946
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4957847988606628275}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.5000001, y: 1.5000001, z: 3.0000002}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.5, y: 1.5000001, z: 3.0000002}
+  m_TimeToStationary: 0.5
