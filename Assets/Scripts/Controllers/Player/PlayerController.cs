@@ -141,7 +141,10 @@ namespace Twinfiltration
                 Vector3 toGuard = guard.m_CharTransform.position - m_CharTransform.position;
                 m_CharTransform.rotation = Quaternion.LookRotation(toGuard, Vector3.up);
             }
+        }
 
+        public void TriggerGameOverScreen()
+        {
             _gameOverUI.SetActive(true);
         }
 

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using LOS;
 using Mirror.Examples.AdditiveLevels;
+using System.Collections;
 
 namespace Twinfiltration
 {
@@ -81,15 +82,29 @@ namespace Twinfiltration
                 var newGuard = m_VisibilityInfo.VisibleSources[i].GameObject.transform.parent.parent.GetComponent<EnemyController>();
                 newGuard.TriggerGameOver(p1);
             }
+            if (!_detectionAudio.isPlaying)
+            {
+                _detectionAudio.Play();
+            }
 
             p1.TriggerGameOver(guard);
             p2.TriggerGameOver(guard);
             guard.TriggerGameOver(p1);
 
             // GAME OVER SCREEN TRIGGERED HERE
-            _gameOverAudio.Play();
-
+            StartCoroutine(GameOverCoroutine(p1, p2));
         }
+
+        IEnumerator GameOverCoroutine(PlayerController p1, PlayerController p2)
+        {
+            while (_detectionAudio.isPlaying)
+            {
+                yield return null;
+            }
+            _gameOverAudio.Play();
+            p1.TriggerGameOverScreen();
+            p2.TriggerGameOverScreen();
+        } 
 
         private void RotateUI()
         {
@@ -103,10 +118,6 @@ namespace Twinfiltration
         {
             if (m_WasDetected)
             {
-                if (!_detectionAudio.isPlaying)
-                {
-                    _detectionAudio.Play();
-                }
                 return;
             }
 
