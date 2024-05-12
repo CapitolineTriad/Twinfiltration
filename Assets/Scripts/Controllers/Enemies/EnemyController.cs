@@ -26,7 +26,7 @@ namespace Twinfiltration
         int _currRestPointPathIndex = 0;
         int _waypointSign = 1;
 
-        bool isAlreadyOnRestPoint = false;
+        bool isAlreadyOnRestPointPath = false;
 
         [SerializeField] PathType pathType;
 
@@ -117,7 +117,7 @@ namespace Twinfiltration
                 case PathType.RestPoint:
                     Debug.Log("RestPoint");
                     var currMinDist = Mathf.Infinity;
-                    if (!isAlreadyOnRestPoint)
+                    if (!isAlreadyOnRestPointPath)
                     {
                         var index = 0;
                         for (int i = 0; i < RestPointPath.Length; i++)
@@ -134,7 +134,7 @@ namespace Twinfiltration
                         }
                         _currRestPointPathIndex = index;
                         curDestination = RestPointPath[_currRestPointPathIndex].position;
-                        isAlreadyOnRestPoint = true;
+                        isAlreadyOnRestPointPath = true;
                     } 
                     else
                     {
@@ -147,6 +147,7 @@ namespace Twinfiltration
                             _currRestPointPathIndex++;
                             _currRestPointPathIndex = Mathf.Min(_currRestPointPathIndex, RestPointPath.Length-1);
                             curDestination = RestPointPath[_currRestPointPathIndex].position;
+                            activePathType = PathType.StandStill;
                         }
                     }
                     break;
