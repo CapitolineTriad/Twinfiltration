@@ -112,7 +112,7 @@ Transform:
   m_Children:
   - {fileID: 1425961071757388375}
   - {fileID: 5049255440348151061}
-  - {fileID: 2446355606619910310}
+  - {fileID: 157266226490004086}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3612768541847241618
@@ -254,7 +254,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 456
   m_SeenByTag: NPC
-  m_MeshRenderer: {fileID: 4741331868207685448}
+  m_MeshRenderer: {fileID: 7066450784032210328}
 --- !u!1 &5434776636235882871
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,13 +685,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85c5053d929ca7c4ba6049c2195049ae, type: 3}
---- !u!4 &2446355606619910310 stripped
+--- !u!4 &157266226490004086 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1010694592820996508, guid: 85c5053d929ca7c4ba6049c2195049ae, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3304303859077729100, guid: 85c5053d929ca7c4ba6049c2195049ae, type: 3}
   m_PrefabInstance: {fileID: 3455815722072906042}
   m_PrefabAsset: {fileID: 0}
---- !u!137 &4741331868207685448 stripped
+--- !u!137 &7066450784032210328 stripped
 SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 7942412541934667378, guid: 85c5053d929ca7c4ba6049c2195049ae, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5612775526656156834, guid: 85c5053d929ca7c4ba6049c2195049ae, type: 3}
   m_PrefabInstance: {fileID: 3455815722072906042}
   m_PrefabAsset: {fileID: 0}
