@@ -11,9 +11,9 @@ namespace Twinfiltration
     {
         [SerializeField] protected ControllerDefinition m_ControllerDefinition;
 
-        protected Animator m_Animator;
+        [HideInInspector]public Animator m_Animator;
         protected Rigidbody m_RigidBody;
-        protected Transform m_CharTransform;
+        [HideInInspector]public Transform m_CharTransform;
         protected CapsuleCollider m_CharCollider;
 
         protected bool m_MovementBlocked = false;
@@ -39,8 +39,7 @@ namespace Twinfiltration
         {
             var deltaTime = Time.fixedDeltaTime;
 
-            if (!m_MovementBlocked)
-                GetMovementInput();
+            GetMovementInput();
 
             ApplyMovement(deltaTime);
         }

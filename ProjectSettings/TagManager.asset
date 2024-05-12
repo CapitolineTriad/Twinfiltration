@@ -6,6 +6,10 @@ TagManager:
   tags:
   - PatrolWaypoint
   - NPC
+  - UITimer
+  - UIAbility
+  - Player2
+  - Player1
   layers:
   - Default
   - TransparentFX
