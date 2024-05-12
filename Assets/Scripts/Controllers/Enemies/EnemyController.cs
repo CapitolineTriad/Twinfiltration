@@ -144,10 +144,14 @@ namespace Twinfiltration
                         if (Vector3.Distance(currentRestPointPathPosition, currentDestionationPlanePos) < 0.1f)
                         {
                             StopCharacter();
+                            if (_currRestPointPathIndex == RestPointPath.Length - 1)
+                            {
+                                activePathType = PathType.StandStill;
+                            }
                             _currRestPointPathIndex++;
                             _currRestPointPathIndex = Mathf.Min(_currRestPointPathIndex, RestPointPath.Length-1);
                             curDestination = RestPointPath[_currRestPointPathIndex].position;
-                            activePathType = PathType.StandStill;
+
                         }
                     }
                     break;
