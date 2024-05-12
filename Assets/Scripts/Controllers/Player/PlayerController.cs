@@ -90,7 +90,7 @@ namespace Twinfiltration
                     StopCharacter();
                     SetAnimBoolServer("IsPlantingDevice", true); // need to send an update event for all client animators here, probably
                     m_MovementBlockTimer = 1.1f;
-                    SpawnDeviceServer(m_TrackerPrefab, devicePos, m_CharTransform.rotation);
+                    SpawnDeviceServer(devicePos, m_CharTransform.rotation);
                     m_AbilityUses -= 1;
                     m_AbilityUI.m_CurrFill = m_AbilityUses;
                 }
@@ -98,15 +98,15 @@ namespace Twinfiltration
         }
 
         [Command(requiresAuthority = false)]
-        private void SpawnDeviceServer(GameObject prefab, Vector3 pos, Quaternion rot)
+        private void SpawnDeviceServer(Vector3 pos, Quaternion rot)
         {
-            SpawnDeviceClient(prefab, pos, rot);
+            SpawnDeviceClient(pos, rot);
         }
 
         [ClientRpc]
-        private void SpawnDeviceClient(GameObject prefab, Vector3 pos, Quaternion rot)
+        private void SpawnDeviceClient(Vector3 pos, Quaternion rot)
         {
-            Instantiate(prefab, pos, rot);
+            Instantiate(m_TrackerPrefab, pos, rot);
         }
 
         private void LateUpdate()
