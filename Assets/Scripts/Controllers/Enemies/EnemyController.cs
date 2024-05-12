@@ -20,6 +20,8 @@ namespace Twinfiltration
         public Transform[] Waypoints;
         int currWaypointIndex = 0;
 
+        int waypointSign = 1;
+
         [SerializeField] PathType pathType;
 
 
@@ -68,7 +70,22 @@ namespace Twinfiltration
                     }
                     break;
                 case PathType.BackAndForth:
-                    // Nothing yet.
+                    var planePos2 = new Vector2(transform.position.x, transform.position.z);
+                    var curDestinationPlanePos2 = new Vector2(curDestination.x, curDestination.z);
+                    if (Vector3.Distance(planePos2, curDestinationPlanePos2) < 0.05f)
+                    {
+                        StopCharacter();
+                        currWaypointIndex += waypointSign;
+                        if (currWaypointIndex == 0)
+                        {
+                            waypointSign = 1;
+                        } 
+                        else if (currWaypointIndex == Waypoints.Length-1)
+                        {
+                            waypointSign = -1;
+                        }
+                        curDestination = Waypoints[currWaypointIndex].position;
+                    }
                     break;
             }
             
