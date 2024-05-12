@@ -11,7 +11,7 @@ namespace Twinfiltration
     {
         [SerializeField] private bool IsDisguised;
         [SerializeField] private GameObject m_TrackerPrefab;
-        [SerializeField] public int m_AbilityUses = 3;
+        [SerializeField] public int m_AbilityUses = 6;
 
         private Transform m_Camera;
         private CameraController m_CameraController;
