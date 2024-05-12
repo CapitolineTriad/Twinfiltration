@@ -61,6 +61,11 @@ namespace Twinfiltration
         [Server]
         protected override void GetMovementInput()
         {
+            if (m_MovementBlocked)
+            {
+                return;
+            }
+
             Vector3 curDestination;
             if (activePathType == PathType.RestPoint)
             {
