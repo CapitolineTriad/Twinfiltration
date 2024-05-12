@@ -623,7 +623,7 @@ MonoBehaviour:
   offlineScene: 
   onlineScene: 
   transport: {fileID: 1495594497}
-  networkAddress: localhost
+  networkAddress: 80
   maxConnections: 2
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
