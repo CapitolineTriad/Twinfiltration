@@ -22,7 +22,7 @@ namespace Twinfiltration
         [SerializeField] AudioSource _detectionAudio;
 
         [SerializeField] AudioSource _gameOverAudio;
-        [SerializeField] GameObject _gameOverUI;
+
         
 
         private void Awake()
