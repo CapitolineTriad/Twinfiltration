@@ -111,12 +111,19 @@ namespace Twinfiltration
 
         public void GuardInteract(EnemyController guard)
         {
+            if (m_AbilityUses <= 0)
+                return;
+
+            Vector3 toGuard = guard.m_CharTransform.position - m_CharTransform.position;
+            m_CharTransform.rotation = Quaternion.LookRotation(toGuard, Vector3.up);
+
             m_MovementBlocked = true;
             StopCharacter();
             SetAnimBoolServer("IsSaluting", true); // need to send an update event for all client animators here, probably
-            m_MovementBlockTimer = 1.7f;
+            m_MovementBlockTimer = 3.2f;
             m_AbilityUses -= 1;
             m_AbilityUI.m_CurrFill = m_AbilityUses;
+            guard.GuardInteract(this); // server command
         }
 
         public void TriggerGameOver(EnemyController guard)

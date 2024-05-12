@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Animator: {fileID: 0}
   m_CharTransform: {fileID: 0}
   Waypoints: []
+  RestPointPath: []
   pathType: 0
 --- !u!114 &5095753842110655856
 MonoBehaviour:
@@ -666,31 +667,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9143774456825047475, guid: 4f2eb28155e26df4e8dd637678ed3a15, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.045464903
+      value: -0.045464765
       objectReference: {fileID: 0}
     - target: {fileID: 9143774456825047475, guid: 4f2eb28155e26df4e8dd637678ed3a15, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2847202
+      value: 1.2847201
       objectReference: {fileID: 0}
     - target: {fileID: 9143774456825047475, guid: 4f2eb28155e26df4e8dd637678ed3a15, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.21109585
+      value: 0.21109581
       objectReference: {fileID: 0}
     - target: {fileID: 9143774456825047475, guid: 4f2eb28155e26df4e8dd637678ed3a15, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.964503
+      value: 0.96450293
       objectReference: {fileID: 0}
     - target: {fileID: 9143774456825047475, guid: 4f2eb28155e26df4e8dd637678ed3a15, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.011708381
+      value: -0.011708401
       objectReference: {fileID: 0}
     - target: {fileID: 9143774456825047475, guid: 4f2eb28155e26df4e8dd637678ed3a15, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.025349922
+      value: 0.025349837
       objectReference: {fileID: 0}
     - target: {fileID: 9143774456825047475, guid: 4f2eb28155e26df4e8dd637678ed3a15, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.26259172
+      value: 0.2625918
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -940,18 +941,18 @@ PrefabInstance:
     - target: {fileID: 3044911589909979044, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
       propertyPath: m_InteractAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: -6048259880215781119}
+      objectReference: {fileID: 5165995555936222024}
     - target: {fileID: 3044911589909979044, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
       propertyPath: m_InteractAction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3044911589909979044, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
       propertyPath: m_InteractAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GuardInteract
+      value: TriggerGuardInteract
       objectReference: {fileID: 0}
     - target: {fileID: 3044911589909979044, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
       propertyPath: m_InteractAction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Twinfiltration.EnemyController, Assembly-CSharp
+      value: Twinfiltration.InteractPrompt, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3044911589909979044, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
       propertyPath: m_InteractAction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -962,6 +963,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
+--- !u!114 &5165995555936222024 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3044911589909979044, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
+  m_PrefabInstance: {fileID: 7922112546283119852}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08e2e91e3d8032841b9fd600d2714fd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7043898785783365280 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 878214860015589964, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
