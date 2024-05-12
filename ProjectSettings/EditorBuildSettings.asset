@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Lobby networking/Copypaste/Scene_Lobby.unity
     guid: 784513d81ca3e9a49a80b3fdc200abfb
   - enabled: 1
-    path: Assets/Scenes/Level_notone.unity
-    guid: b7aeb42bcc51eeb429ca8ba6108a938b
+    path: Assets/Scenes/Level1.unity
+    guid: 6111038e6ee2e2241ab2751d49b8edd3
   m_configObjects: {}
