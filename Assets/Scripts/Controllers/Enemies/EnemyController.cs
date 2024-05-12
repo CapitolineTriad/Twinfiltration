@@ -135,7 +135,7 @@ namespace Twinfiltration
                         {
                             StopCharacter();
                             _currRestPointPathIndex++;
-                            _currRestPointPathIndex = Mathf.Min(_currRestPointPathIndex, RestPointPath.Length);
+                            _currRestPointPathIndex = Mathf.Min(_currRestPointPathIndex, RestPointPath.Length-1);
                             curDestination = RestPointPath[_currRestPointPathIndex].position;
                         }
                     }
