@@ -10,6 +10,8 @@ namespace Twinfiltration
     {
         private static System.Random m_RandNumGen;
 
+        public List<Transform> Waypoints;
+
         [Server]
         protected void Start()
         {
