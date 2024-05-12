@@ -98,9 +98,9 @@ namespace Twinfiltration
 
             m_RigidBody.AddForce(Vector3.Scale(neededAccel * m_RigidBody.mass, m_ControllerDefinition.MovementForceScale));
 
-            if (_stepSource != null && _audioSourceClips.Length > 0)
+            if (_stepSource != null && _audioSourceClips != null && _audioSourceClips.Length > 0)
             {
-                if (_stepSource.isPlaying && m_RigidBody.velocity.magnitude > 0.2f)
+                if (!_stepSource.isPlaying && m_RigidBody.velocity.magnitude > 0.2f)
                 {
                     var clip = _audioSourceClips[m_RandNumGen2.Next(_audioSourceClips.Length)];
                     _stepSource.clip = clip; 
