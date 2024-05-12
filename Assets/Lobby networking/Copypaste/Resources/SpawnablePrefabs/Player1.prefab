@@ -499,7 +499,7 @@ MonoBehaviour:
   m_CanvasGroup: {fileID: 502675035175726015}
   m_DetectionMeter: {fileID: 3038355930267579090}
   m_VisibilityInfo: {fileID: 3523898213886992826}
-  _detectionAudio: {fileID: 0}
+  _detectionAudio: {fileID: 587698863928571815}
 --- !u!82 &587698863928571815
 AudioSource:
   m_ObjectHideFlags: 0
