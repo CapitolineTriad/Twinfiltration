@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dbda03d13ee4efe42b3be2523dc30152
+guid: bc4c6c9a1ce128943b76dd9975a941de
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,18 +33,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: P1_idle.001
-      takeName: P1_idle.001
-      internalID: -2516297716189211259
+      name: P1_hack.001
+      takeName: P1_hack.001
+      internalID: 1510923978095326462
       firstFrame: 0
-      lastFrame: 38
+      lastFrame: 170
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -102,7 +102,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
