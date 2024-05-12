@@ -69,7 +69,17 @@ namespace Twinfiltration
                 if(m_MovementBlockTimer <= 0f && m_TimerLastFrame > 0f)
                 {
                     if (isHacking)
+                    {
                         lastPrompt.gameObject.SetActive(false);
+                        if (lastPromptTag == "CONSOLE1")
+                        {
+                            UnlockDoorServer("DOORTAG1");
+                        }
+                        else if (lastPromptTag == "CONSOLE2")
+                        {
+                            UnlockDoorServer("DOORTAG2");
+                        }
+                    }
                     m_TimerLastFrame = m_MovementBlockTimer;
                     SetAnimBoolServer("IsPlantingDevice", false);
                     SetAnimBoolServer("IsSaluting", false);
@@ -95,6 +105,18 @@ namespace Twinfiltration
                     m_AbilityUI.m_CurrFill = m_AbilityUses;
                 }
             }
+        }
+
+        [Command(requiresAuthority = false)]
+        private void UnlockDoorServer(string doorTag)
+        {
+            UnlockDoorClient(doorTag);
+        }
+
+        [ClientRpc]
+        private void UnlockDoorClient(string doorTag)
+        {
+            GameObject.FindGameObjectWithTag(doorTag).GetComponent<SlidingDoors>().m_IsLocked = false;
         }
 
         [Command(requiresAuthority = false)]
@@ -175,11 +197,13 @@ namespace Twinfiltration
         }
 
         bool isHacking = false;
+        string lastPromptTag;
         InteractPrompt lastPrompt;
         [SerializeField] AudioSource _guardSaluteAudio;
 
-        public void TriggerHacking(Transform console, InteractPrompt prompt)
+        public void TriggerHacking(Transform console, InteractPrompt prompt, string consoleTag)
         {
+            lastPromptTag = consoleTag;
             lastPrompt = prompt;
             isHacking = true;
             Vector3 toConsole = console.position - m_CharTransform.position;

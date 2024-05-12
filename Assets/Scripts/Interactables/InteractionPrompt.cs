@@ -97,7 +97,7 @@ namespace Twinfiltration
         public void TriggerHacking()
         {
             var p1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerController>();
-            p1.TriggerHacking(transform.parent, this);
+            p1.TriggerHacking(transform.parent, this, gameObject.tag);
         }
 
         public void TriggerGuardInteract()
