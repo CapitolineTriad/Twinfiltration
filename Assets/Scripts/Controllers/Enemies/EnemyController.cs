@@ -2,15 +2,27 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Twinfiltration
 {
     [RequireComponent(typeof(CapsuleCollider), typeof(Rigidbody))]
     public class EnemyController : CharacterController
     {
+        public enum PathType
+        {
+            Circular,
+            BackAndForth
+        }
+
         private static System.Random m_RandNumGen;
 
-        public List<Transform> Waypoints;
+        public Transform[] Waypoints;
+        int currWaypointIndex = 0;
+
+        [SerializeField] PathType pathType;
+
+
 
         [Server]
         protected void Start()
@@ -39,8 +51,26 @@ namespace Twinfiltration
         [Server]
         protected override void GetMovementInput()
         {
+            Vector3 curDestination = Waypoints[currWaypointIndex].position;
 
-            m_TargetDir = m_MovementBlocked ? Vector3.zero : m_CharTransform.forward;
+            switch (pathType)
+            {
+                case PathType.Circular:
+                    // Circular path (default)
+                    if (Vector3.Distance(transform.position, Waypoints[currWaypointIndex].position) < 0.5f)
+                    {
+                        currWaypointIndex++;
+                        currWaypointIndex %= Waypoints.Length;
+                        curDestination = Waypoints[currWaypointIndex].position;
+                    }
+                    break;
+                case PathType.BackAndForth:
+                    // Nothing yet.
+                    break;
+            }
+            
+
+            m_TargetDir = curDestination - transform.position;
             SetAnimatorVars(m_TargetDir.magnitude);
         }
 
@@ -48,14 +78,6 @@ namespace Twinfiltration
         protected void SetAnimatorVars(float movementSpeed)
         {
             m_Animator.SetBool("IsMoving", movementSpeed > 0);
-        }
-
-        [Server]
-        private Vector3 GetRandomDestination()
-        {
-            var moveTargets = GameObject.FindGameObjectsWithTag("PatrolWaypoint");
-
-            return moveTargets[m_RandNumGen.Next(moveTargets.Length)].transform.position;
         }
 
         [Server]
