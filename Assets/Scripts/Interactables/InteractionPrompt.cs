@@ -100,6 +100,12 @@ namespace Twinfiltration
             p1.TriggerHacking(transform.parent, this);
         }
 
+        public void TriggerGuardInteract()
+        {
+            var p2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerController>();
+            p2.GuardInteract(transform.parent.GetComponent<EnemyController>());
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.layer != 3)

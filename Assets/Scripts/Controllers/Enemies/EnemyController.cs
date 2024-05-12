@@ -158,22 +158,13 @@ namespace Twinfiltration
 
         private float m_InteractTimer = 0;
         [Command(requiresAuthority =false)]
-        public void GuardInteract()
+        public void GuardInteract(PlayerController playerController)
         {
-            var playerController = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerController>();
-            if (playerController.m_AbilityUses <= 0)
-                return;
-
             m_MovementBlocked = true;
             StopCharacter();
             SetAnimatorVars(m_TargetDir.magnitude);
-            Vector3 toGuard = m_CharTransform.position - playerController.m_CharTransform.position;
             Vector3 toPlayer = playerController.m_CharTransform.position - m_CharTransform.position;
-
             m_CharTransform.rotation = Quaternion.LookRotation(toPlayer, Vector3.up);
-            playerController.m_CharTransform.rotation = Quaternion.LookRotation(toGuard, Vector3.up); // does this need to be a ClientRPC call instead? probably
-            playerController.GuardInteract(this);
-
             m_InteractTimer = 1.3f;
         }
 
