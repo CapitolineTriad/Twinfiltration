@@ -19,7 +19,7 @@ MonoBehaviour:
     m_Bits: 8
   TerrainLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   MaxSpeed: 5
   AirAcceleration: 3
   GroundAcceleration: 30
