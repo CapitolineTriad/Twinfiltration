@@ -172,15 +172,6 @@ namespace Twinfiltration
             m_Animator.SetBool("IsMoving", movementSpeed > 0);
         }
 
-        [Server]
-        protected void OnCollisionEnter(Collision collision)
-        {
-            if (collision.collider.gameObject.layer == 8)
-            {
-                m_CharTransform.rotation = Quaternion.LookRotation(-m_CharTransform.forward, Vector3.up);
-            }
-        }
-
         private float m_InteractTimer = 0;
         [Command(requiresAuthority =false)]
         public void GuardInteract(PlayerController playerController)
