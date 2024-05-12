@@ -96,6 +96,7 @@ namespace Twinfiltration
                     }
                     break;
                 case PathType.RestPoint:
+                    Debug.Log("RestPoint");
                     var currMinDist = Mathf.Infinity;
                     if (!isAlreadyOnRestPoint)
                     {
@@ -115,18 +116,17 @@ namespace Twinfiltration
                         _currRestPointPathIndex = index;
                         curDestination = RestPointPath[_currRestPointPathIndex].position;
                         isAlreadyOnRestPoint = true;
-                    } else
+                    } 
+                    else
                     {
                         var curDesRestpoint = RestPointPath[_currRestPointPathIndex].position;
                         var planePos3 = new Vector2(transform.position.x, transform.position.z);
                         var curDestinationPlanePos33 = new Vector2(curDesRestpoint.x, curDesRestpoint.z);
-                        if (Vector3.Distance(planePos3, curDestinationPlanePos33) < 0.05f)
+                        if (Vector2.Distance(planePos3, curDestinationPlanePos33) < 0.05f)
                         {
                             StopCharacter();
-                            if (!(_currRestPointPathIndex == RestPointPath.Length - 1))
-                            {
-                                _currRestPointPathIndex++;
-                            }
+                            _currRestPointPathIndex++;
+                            _currRestPointPathIndex = Mathf.Min(_currRestPointPathIndex, RestPointPath.Length);
                             curDestination = RestPointPath[_currRestPointPathIndex].position;
                         }
                     }
@@ -158,7 +158,7 @@ namespace Twinfiltration
         }
 
         private float m_InteractTimer = 0;
-        [Server]
+        [Command(requiresAuthority =false)]
         public void GuardInteract()
         {
             var playerController = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerController>();
