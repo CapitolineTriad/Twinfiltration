@@ -158,7 +158,7 @@ namespace Twinfiltration
         }
 
         private float m_InteractTimer = 0;
-        [Server]
+        [Command(requiresAuthority =false)]
         public void GuardInteract()
         {
             var playerController = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerController>();
