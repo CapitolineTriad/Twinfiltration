@@ -57,8 +57,11 @@ namespace Twinfiltration
             {
                 case PathType.Circular:
                     // Circular path (default)
-                    if (Vector3.Distance(transform.position, Waypoints[currWaypointIndex].position) < 0.5f)
+                    var planePos = new Vector2(transform.position.x, transform.position.z);
+                    var curDestinationPlanePos = new Vector2(curDestination.x, curDestination.z);
+                    if (Vector3.Distance(planePos, curDestinationPlanePos) < 0.05f)
                     {
+                        StopCharacter();
                         currWaypointIndex++;
                         currWaypointIndex %= Waypoints.Length;
                         curDestination = Waypoints[currWaypointIndex].position;
@@ -70,7 +73,10 @@ namespace Twinfiltration
             }
             
 
-            m_TargetDir = curDestination - transform.position;
+            m_TargetDir = (curDestination - transform.position);
+            m_TargetDir = new Vector3(m_TargetDir.x, 0, m_TargetDir.z).normalized;
+            Debug.DrawLine(transform.position, transform.position + m_TargetDir, Color.magenta);
+            Debug.DrawRay(curDestination, Vector3.up, Color.magenta);
             SetAnimatorVars(m_TargetDir.magnitude);
         }
 

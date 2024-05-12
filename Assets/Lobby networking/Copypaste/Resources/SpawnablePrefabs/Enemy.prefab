@@ -143,7 +143,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -169,6 +169,8 @@ MonoBehaviour:
   m_ControllerDefinition: {fileID: 11400000, guid: 35748789adf13544ba94e9c707176830, type: 2}
   m_Animator: {fileID: 0}
   m_CharTransform: {fileID: 0}
+  Waypoints: []
+  pathType: 0
 --- !u!114 &5095753842110655856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,31 +666,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9143774456825047475, guid: 4f2eb28155e26df4e8dd637678ed3a15, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.045464765
+      value: -0.045464903
       objectReference: {fileID: 0}
     - target: {fileID: 9143774456825047475, guid: 4f2eb28155e26df4e8dd637678ed3a15, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2847201
+      value: 1.2847202
       objectReference: {fileID: 0}
     - target: {fileID: 9143774456825047475, guid: 4f2eb28155e26df4e8dd637678ed3a15, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.21109581
+      value: 0.21109585
       objectReference: {fileID: 0}
     - target: {fileID: 9143774456825047475, guid: 4f2eb28155e26df4e8dd637678ed3a15, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.96450293
+      value: 0.964503
       objectReference: {fileID: 0}
     - target: {fileID: 9143774456825047475, guid: 4f2eb28155e26df4e8dd637678ed3a15, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.011708401
+      value: -0.011708381
       objectReference: {fileID: 0}
     - target: {fileID: 9143774456825047475, guid: 4f2eb28155e26df4e8dd637678ed3a15, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.025349837
+      value: 0.025349922
       objectReference: {fileID: 0}
     - target: {fileID: 9143774456825047475, guid: 4f2eb28155e26df4e8dd637678ed3a15, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.2625918
+      value: 0.26259172
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -818,12 +820,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: d2e62d860af334945a2c866b57efba37, type: 3}
-      propertyPath: m_TargetTexture
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2000000, guid: d2e62d860af334945a2c866b57efba37, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 4294967240
+      value: 4294959048
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: d2e62d860af334945a2c866b57efba37, type: 3}
       propertyPath: m_MaskColor.b
