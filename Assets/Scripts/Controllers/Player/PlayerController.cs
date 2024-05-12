@@ -151,7 +151,10 @@ namespace Twinfiltration
 
         public void TriggerGameOver(EnemyController guard)
         {
-            _gameMusic?.Stop();
+            if (_gameMusic != null)
+            {
+                _gameMusic.Stop();
+            }
             m_MovementBlocked = true;
             StopCharacter();
 

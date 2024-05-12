@@ -71,12 +71,12 @@ namespace Twinfiltration
                 return;
             }
 
-            Vector3 curDestination;
+            Vector3 curDestination = Vector3.zero;
             if (activePathType == PathType.RestPoint)
             {
                 curDestination = RestPointPath[_currRestPointPathIndex].position;
             } 
-            else
+            else if (activePathType != PathType.StandStill)
             {
                 curDestination = Waypoints[_currWaypointIndex].position;
             }
