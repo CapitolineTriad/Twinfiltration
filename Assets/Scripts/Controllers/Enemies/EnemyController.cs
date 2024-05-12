@@ -61,7 +61,16 @@ namespace Twinfiltration
         [Server]
         protected override void GetMovementInput()
         {
-            Vector3 curDestination = Waypoints[_currWaypointIndex].position;
+            Vector3 curDestination;
+            if (activePathType == PathType.RestPoint)
+            {
+                curDestination = RestPointPath[_currRestPointPathIndex].position;
+            } 
+            else
+            {
+                curDestination = Waypoints[_currWaypointIndex].position;
+            }
+
 
             switch (activePathType)
             {
