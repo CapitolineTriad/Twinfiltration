@@ -22,7 +22,7 @@ namespace Twinfiltration
         protected bool m_IsRunning;
         protected bool m_IsMoving;
         protected bool m_IsJumping;
-        protected bool m_IsGrounded;
+        protected bool m_IsGrounded = true;
 
 
         #region Callbacks
@@ -44,7 +44,7 @@ namespace Twinfiltration
             ApplyMovement(deltaTime);
         }
 
-        protected virtual void OnCollisionEnter(Collision collision)
+        /*protected virtual void OnCollisionEnter(Collision collision)
         {
             if (collision.collider.gameObject.layer ==  Mathf.Log(m_ControllerDefinition.TerrainLayer, 2))
                 m_IsGrounded = true;
@@ -54,7 +54,7 @@ namespace Twinfiltration
         {
             if (collision.collider.gameObject.layer == Mathf.Log(m_ControllerDefinition.TerrainLayer, 2))
                 m_IsGrounded = false;
-        }
+        }*/
 
         #endregion Callbacks
 
