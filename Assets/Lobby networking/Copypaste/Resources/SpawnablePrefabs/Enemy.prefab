@@ -167,6 +167,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   m_ControllerDefinition: {fileID: 11400000, guid: 35748789adf13544ba94e9c707176830, type: 2}
+  m_Animator: {fileID: 0}
+  m_CharTransform: {fileID: 0}
 --- !u!114 &5095753842110655856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,6 +926,38 @@ PrefabInstance:
     - target: {fileID: 2619082507696290102, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
       propertyPath: m_Name
       value: UI Container
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044911589909979044, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
+      propertyPath: m_Player2Only
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044911589909979044, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
+      propertyPath: m_InteractAction.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044911589909979044, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
+      propertyPath: m_InteractAction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044911589909979044, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
+      propertyPath: m_InteractAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: -6048259880215781119}
+    - target: {fileID: 3044911589909979044, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
+      propertyPath: m_InteractAction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044911589909979044, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
+      propertyPath: m_InteractAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GuardInteract
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044911589909979044, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
+      propertyPath: m_InteractAction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Twinfiltration.EnemyController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044911589909979044, guid: e98e4e65c28e6f7498be0ceb0aab963d, type: 3}
+      propertyPath: m_InteractAction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

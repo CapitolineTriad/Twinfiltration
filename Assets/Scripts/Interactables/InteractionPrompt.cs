@@ -11,6 +11,7 @@ namespace Twinfiltration
     {
         private const float m_FadeSpeed = 7;
 
+        [SerializeField] private bool m_Player2Only;
         [SerializeField] private GameObject m_InteractUI;
         [SerializeField] private TextMeshProUGUI m_InteractText;
         [SerializeField][TextArea(1, 1)] private string m_InteractPrompt = "";
@@ -49,6 +50,9 @@ namespace Twinfiltration
 
             if (m_CanvasGroup.alpha == m_AlphaTarget)
             {
+                if (m_AlphaTarget >= 1f)
+                    HandleInput();
+
                 if (m_AlphaTarget <= 0f)
                     m_InteractUI.SetActive(false);
 
@@ -62,7 +66,7 @@ namespace Twinfiltration
 
         private void HandleInput()
         {
-            if (false)
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Joystick1Button1))
                 m_InteractAction.Invoke();
         }
 
@@ -92,6 +96,9 @@ namespace Twinfiltration
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.layer != 3)
+                return;
+
+            if (m_Player2Only && other.tag != "Player2")
                 return;
 
             Debug.Log("Entered interaction zone.");
