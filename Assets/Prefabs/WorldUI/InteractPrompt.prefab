@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 6002631031876986493}
   - component: {fileID: 3044911589909979044}
   m_Layer: 5
-  m_Name: UIContainer
+  m_Name: InteractPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,9 +182,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08e2e91e3d8032841b9fd600d2714fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Player1Only: 0
+  m_Player2Only: 0
   m_InteractUI: {fileID: 726281570134532664}
   m_InteractText: {fileID: 4593948816848874459}
   m_InteractPrompt: Relieve
+  m_InteractAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3712513011120927295
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +390,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dff55985b92ae994cace069bf5a2e1ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c9100466aa22a14b8008daf4ea14768, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

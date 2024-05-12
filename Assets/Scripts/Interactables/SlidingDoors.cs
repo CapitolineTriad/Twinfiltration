@@ -12,11 +12,15 @@ namespace Twinfiltration
         [SerializeField] private float m_SlideDistance = 0.5f;
 
         private int m_IsInTrigger;
+        private Vector3 m_LeftDoorOrig;
+        private Vector3 m_RightDoorOrig;
         private Vector3 m_LeftDoorTarget;
         private Vector3 m_RightDoorTarget;
         private void Awake()
         {
             m_IsInTrigger = 0;
+            m_LeftDoorOrig = m_LeftDoor.position;
+            m_RightDoorOrig = m_RightDoor.position;
             m_LeftDoorTarget = m_LeftDoor.position;
             m_RightDoorTarget = m_RightDoor.position;
         }
@@ -27,9 +31,12 @@ namespace Twinfiltration
             if ((colliderLayer != 3 || m_IsLocked) && colliderLayer != 6)
                 return;
 
+            if (m_IsInTrigger <= 0)
+            {
+                m_LeftDoorTarget = m_LeftDoorOrig - new Vector3(m_SlideDistance, 0, 0);
+                m_RightDoorTarget = m_RightDoorOrig + new Vector3(m_SlideDistance, 0, 0);
+            }
             m_IsInTrigger += 1;
-            m_LeftDoorTarget = m_LeftDoor.position - new Vector3(m_SlideDistance, 0, 0);
-            m_RightDoorTarget = m_RightDoor.position + new Vector3(m_SlideDistance, 0, 0);
         }
 
         private void OnTriggerExit(Collider other)
@@ -41,9 +48,8 @@ namespace Twinfiltration
             m_IsInTrigger -= 1;
             if (m_IsInTrigger <= 0)
             {
-                m_LeftDoorTarget = m_LeftDoor.position + new Vector3(m_SlideDistance, 0, 0);
-                m_RightDoorTarget = m_RightDoor.position - new Vector3(m_SlideDistance, 0, 0);
-
+                m_LeftDoorTarget = m_LeftDoorOrig;
+                m_RightDoorTarget = m_RightDoorOrig;
             }
         }
 

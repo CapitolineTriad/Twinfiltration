@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Twinfiltration
@@ -12,6 +13,7 @@ namespace Twinfiltration
         [SerializeField] public int m_AbilityUses = 3;
 
         private Transform m_Camera;
+        private CameraController m_CameraController;
         private TimerUI m_Timer;
         private AbilityUI m_AbilityUI;
 
@@ -21,6 +23,7 @@ namespace Twinfiltration
             m_Camera = Camera.main.transform;
             m_Timer = GameObject.FindGameObjectWithTag("UITimer").GetComponent<TimerUI>();
             m_AbilityUI = GameObject.FindGameObjectWithTag("UIAbility").GetComponent<AbilityUI>();
+            m_CameraController = Camera.main.GetComponent<CameraController>();
         }
 
         private void Start()
@@ -28,7 +31,7 @@ namespace Twinfiltration
             if (!isLocalPlayer)
                 return;
 
-            Camera.main.GetComponent<CameraController>().m_TrackedObject = m_CharTransform;
+            m_CameraController.m_TrackedObject = m_CharTransform;
             m_AbilityUI.m_MaxFill = m_AbilityUses;
             m_AbilityUI.m_CurrFill = m_AbilityUses;
 
@@ -56,16 +59,19 @@ namespace Twinfiltration
                 m_MovementBlockTimer -= deltaTime;
                 if(m_MovementBlockTimer <= 0f && m_TimerLastFrame > 0f)
                 {
+                    if (isHacking)
+                        lastPrompt.gameObject.SetActive(false);
                     m_TimerLastFrame = m_MovementBlockTimer;
                     m_Animator.SetBool("IsPlantingDevice", false);
                     m_Animator.SetBool("IsSaluting", false);
+                    m_Animator.SetBool("IsInteracting", false);
                     // need to send an update event for all client animators here, probably
                     m_MovementBlocked = false;
                 }
                 m_TimerLastFrame = m_MovementBlockTimer;
             }
             
-            if (!IsDisguised && m_AbilityUses > 0 && Input.GetKeyDown(KeyCode.F))
+            if (!IsDisguised && m_AbilityUses > 0 && (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Joystick1Button2)))
             {
                 Vector3 devicePos = m_CharTransform.position + Vector3.up + m_CharTransform.forward;
                 if (Physics.Raycast(devicePos, Vector3.down, out var hitInfo, 2, m_ControllerDefinition.TerrainLayer))
@@ -79,6 +85,26 @@ namespace Twinfiltration
                     m_AbilityUses -= 1;
                     m_AbilityUI.m_CurrFill = m_AbilityUses;
                 }
+            }
+        }
+
+        private void LateUpdate()
+        {
+            RotateCamera();
+        }
+
+        private float camYaw = 0f;
+        private void RotateCamera()
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.Joystick1Button3))
+            {
+                camYaw = camYaw + 90f;
+                m_CameraController.m_CameraYaw = Mathf.Abs(camYaw) % 360;
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.Joystick1Button4))
+            {
+                camYaw = camYaw - 90f;
+                m_CameraController.m_CameraYaw = Mathf.Abs(camYaw) % 360;
             }
         }
 
@@ -106,6 +132,28 @@ namespace Twinfiltration
                 Vector3 toGuard = guard.m_CharTransform.position - m_CharTransform.position;
                 m_CharTransform.rotation = Quaternion.LookRotation(toGuard, Vector3.up);
             }
+        }
+
+        bool isHacking = false;
+        InteractPrompt lastPrompt;
+        public void TriggerHacking(Transform console, InteractPrompt prompt)
+        {
+            lastPrompt = prompt;
+            isHacking = true;
+            Vector3 toConsole = console.position - m_CharTransform.position;
+            var eulerRot = Quaternion.LookRotation(toConsole, Vector3.up).eulerAngles;
+            var currentRot = m_CharTransform.rotation.eulerAngles;
+            m_CharTransform.rotation = Quaternion.Euler(currentRot.x, eulerRot.y, currentRot.z);
+            m_MovementBlocked = true;
+            StopCharacter();
+            m_Animator.SetBool("IsInteracting", true); // need to send an update event for all client animators here, probably
+            m_MovementBlockTimer = 6f;
+        }
+
+        public void InterruptHacking()
+        {
+            isHacking = false;
+            m_MovementBlockTimer = 0.1f;
         }
 
         protected override void GetMovementInput()

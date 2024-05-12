@@ -11,6 +11,7 @@ namespace Twinfiltration
     {
         private const float m_FadeSpeed = 7;
 
+        [SerializeField] private bool m_Player1Only;
         [SerializeField] private bool m_Player2Only;
         [SerializeField] private GameObject m_InteractUI;
         [SerializeField] private TextMeshProUGUI m_InteractText;
@@ -93,12 +94,20 @@ namespace Twinfiltration
             }
         }
 
+        public void TriggerHacking()
+        {
+            var p1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerController>();
+            p1.TriggerHacking(transform.parent, this);
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.layer != 3)
                 return;
 
             if (m_Player2Only && other.tag != "Player2")
+                return;
+            else if (m_Player1Only && other.tag != "Player1")
                 return;
 
             Debug.Log("Entered interaction zone.");
