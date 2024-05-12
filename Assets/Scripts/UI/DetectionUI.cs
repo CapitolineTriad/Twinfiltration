@@ -97,11 +97,14 @@ namespace Twinfiltration
         private void UpdateVisibility()
         {
             if (m_WasDetected)
-                return;
-            if (!_detectionAudio.isPlaying)
             {
-                _detectionAudio.Play();
+                if (!_detectionAudio.isPlaying)
+                {
+                    _detectionAudio.Play();
+                }
+                return;
             }
+
             bool isVisible = m_VisibilityInfo != null ? m_VisibilityInfo.Visibile : true;
             m_AlphaTarget = isVisible ? 1 : 0;
         }
