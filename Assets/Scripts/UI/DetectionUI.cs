@@ -19,6 +19,8 @@ namespace Twinfiltration
         private float m_AlphaTarget = 0;
         private float m_DetectionDuration = 2;
 
+        [SerializeField] AudioSource _detectionAudio;
+
         private void Awake()
         {
             m_Transform = transform;
@@ -96,7 +98,10 @@ namespace Twinfiltration
         {
             if (m_WasDetected)
                 return;
-
+            if (!_detectionAudio.isPlaying)
+            {
+                _detectionAudio.Play();
+            }
             bool isVisible = m_VisibilityInfo != null ? m_VisibilityInfo.Visibile : true;
             m_AlphaTarget = isVisible ? 1 : 0;
         }

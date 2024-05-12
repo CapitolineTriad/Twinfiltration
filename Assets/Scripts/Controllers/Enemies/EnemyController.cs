@@ -61,7 +61,16 @@ namespace Twinfiltration
         [Server]
         protected override void GetMovementInput()
         {
-            Vector3 curDestination = Waypoints[_currWaypointIndex].position;
+            Vector3 curDestination;
+            if (activePathType == PathType.RestPoint)
+            {
+                curDestination = RestPointPath[_currRestPointPathIndex].position;
+            } 
+            else
+            {
+                curDestination = Waypoints[_currWaypointIndex].position;
+            }
+
 
             switch (activePathType)
             {
@@ -126,15 +135,17 @@ namespace Twinfiltration
                         {
                             StopCharacter();
                             _currRestPointPathIndex++;
+                            _currRestPointPathIndex = Mathf.Min(_currRestPointPathIndex, RestPointPath.Length-1);
                             curDestination = RestPointPath[_currRestPointPathIndex].position;
                         }
                     }
                     break;
             }
-            
+
+            var speedFactor = activePathType == PathType.RestPoint ? 3f : 1f;
 
             m_TargetDir = (curDestination - transform.position);
-            m_TargetDir = new Vector3(m_TargetDir.x, 0, m_TargetDir.z).normalized;
+            m_TargetDir = new Vector3(m_TargetDir.x, 0, m_TargetDir.z).normalized * speedFactor;
             Debug.DrawLine(transform.position, transform.position + m_TargetDir, Color.magenta);
             Debug.DrawRay(curDestination, Vector3.up, Color.magenta);
             SetAnimatorVars(m_TargetDir.magnitude);
