@@ -18,6 +18,7 @@ namespace Twinfiltration
         private TimerUI m_Timer;
         private AbilityUI m_AbilityUI;
         [SerializeField] GameObject _gameOverUI;
+        [SerializeField] AudioSource _gameMusic;
 
         protected override void Awake()
         {
@@ -129,6 +130,7 @@ namespace Twinfiltration
 
         public void TriggerGameOver(EnemyController guard)
         {
+            _gameMusic?.Stop();
             m_MovementBlocked = true;
             StopCharacter();
 
