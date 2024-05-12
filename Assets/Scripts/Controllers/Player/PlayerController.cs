@@ -19,9 +19,16 @@ namespace Twinfiltration
         private AbilityUI m_AbilityUI;
         [SerializeField] GameObject _gameOverUI;
         [SerializeField] AudioSource _gameMusic;
+        [SerializeField] AudioClip[] _saluteAudioClips;
+
+
+        private static System.Random m_RandNumGen;
 
         protected override void Awake()
         {
+            if (m_RandNumGen == null)
+                m_RandNumGen = new System.Random();
+
             base.Awake();
             m_Camera = Camera.main.transform;
             m_Timer = GameObject.FindGameObjectWithTag("UITimer").GetComponent<TimerUI>();
@@ -126,6 +133,9 @@ namespace Twinfiltration
             m_AbilityUses -= 1;
             m_AbilityUI.m_CurrFill = m_AbilityUses;
             guard.GuardInteract(this); // server command
+
+            var clip = _saluteAudioClips[m_RandNumGen.Next(_saluteAudioClips.Length)];
+            _guardSaluteAudio?.PlayOneShot(clip);
         }
 
         public void TriggerGameOver(EnemyController guard)
@@ -152,6 +162,8 @@ namespace Twinfiltration
 
         bool isHacking = false;
         InteractPrompt lastPrompt;
+        [SerializeField] AudioSource _guardSaluteAudio;
+
         public void TriggerHacking(Transform console, InteractPrompt prompt)
         {
             lastPrompt = prompt;
