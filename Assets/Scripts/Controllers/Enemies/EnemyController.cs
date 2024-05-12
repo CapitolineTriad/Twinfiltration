@@ -96,6 +96,7 @@ namespace Twinfiltration
                     }
                     break;
                 case PathType.RestPoint:
+                    Debug.Log("RestPoint");
                     var currMinDist = Mathf.Infinity;
                     if (!isAlreadyOnRestPoint)
                     {
@@ -115,7 +116,8 @@ namespace Twinfiltration
                         _currRestPointPathIndex = index;
                         curDestination = RestPointPath[_currRestPointPathIndex].position;
                         isAlreadyOnRestPoint = true;
-                    } else
+                    } 
+                    else
                     {
                         var curDesRestpoint = RestPointPath[_currRestPointPathIndex].position;
                         var planePos3 = new Vector2(transform.position.x, transform.position.z);
@@ -123,8 +125,8 @@ namespace Twinfiltration
                         if (Vector2.Distance(planePos3, curDestinationPlanePos33) < 0.05f)
                         {
                             StopCharacter();
-
-                            _currRestPointPathIndex = Mathf.Clamp(_currRestPointPathIndex, _currRestPointPathIndex + 1, RestPointPath.Length);
+                            _currRestPointPathIndex++;
+                            _currRestPointPathIndex = Mathf.Min(_currRestPointPathIndex, RestPointPath.Length);
                             curDestination = RestPointPath[_currRestPointPathIndex].position;
                         }
                     }
