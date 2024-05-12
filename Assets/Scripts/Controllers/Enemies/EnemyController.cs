@@ -173,9 +173,8 @@ namespace Twinfiltration
         }
 
         [Server]
-        protected override void OnCollisionEnter(Collision collision)
+        protected void OnCollisionEnter(Collision collision)
         {
-            base.OnCollisionEnter(collision);
             if (collision.collider.gameObject.layer == 8)
             {
                 m_CharTransform.rotation = Quaternion.LookRotation(-m_CharTransform.forward, Vector3.up);
