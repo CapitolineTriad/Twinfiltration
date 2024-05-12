@@ -12,23 +12,31 @@ namespace Twinfiltration
         public enum PathType
         {
             Circular,
-            BackAndForth
+            BackAndForth,
+            RestPoint
         }
 
         private static System.Random m_RandNumGen;
 
         public Transform[] Waypoints;
-        int currWaypointIndex = 0;
+        public Transform[] RestPointPath;
 
-        int waypointSign = 1;
+        int _currWaypointIndex = 0;
+        int _currRestPointPathIndex = 0;
+        int _waypointSign = 1;
+
+        bool isAlreadyOnRestPoint = false;
 
         [SerializeField] PathType pathType;
+
+        PathType activePathType;
 
 
 
         [Server]
         protected void Start()
         {
+            activePathType = pathType;
             if (m_RandNumGen == null)
                 m_RandNumGen = new System.Random();
         }
@@ -53,9 +61,9 @@ namespace Twinfiltration
         [Server]
         protected override void GetMovementInput()
         {
-            Vector3 curDestination = Waypoints[currWaypointIndex].position;
+            Vector3 curDestination = Waypoints[_currWaypointIndex].position;
 
-            switch (pathType)
+            switch (activePathType)
             {
                 case PathType.Circular:
                     // Circular path (default)
@@ -64,9 +72,9 @@ namespace Twinfiltration
                     if (Vector3.Distance(planePos, curDestinationPlanePos) < 0.05f)
                     {
                         StopCharacter();
-                        currWaypointIndex++;
-                        currWaypointIndex %= Waypoints.Length;
-                        curDestination = Waypoints[currWaypointIndex].position;
+                        _currWaypointIndex++;
+                        _currWaypointIndex %= Waypoints.Length;
+                        curDestination = Waypoints[_currWaypointIndex].position;
                     }
                     break;
                 case PathType.BackAndForth:
@@ -75,16 +83,52 @@ namespace Twinfiltration
                     if (Vector3.Distance(planePos2, curDestinationPlanePos2) < 0.05f)
                     {
                         StopCharacter();
-                        currWaypointIndex += waypointSign;
-                        if (currWaypointIndex == 0)
+                        _currWaypointIndex += _waypointSign;
+                        if (_currWaypointIndex == 0)
                         {
-                            waypointSign = 1;
+                            _waypointSign = 1;
                         } 
-                        else if (currWaypointIndex == Waypoints.Length-1)
+                        else if (_currWaypointIndex == Waypoints.Length-1)
                         {
-                            waypointSign = -1;
+                            _waypointSign = -1;
                         }
-                        curDestination = Waypoints[currWaypointIndex].position;
+                        curDestination = Waypoints[_currWaypointIndex].position;
+                    }
+                    break;
+                case PathType.RestPoint:
+                    var currMinDist = Mathf.Infinity;
+                    if (!isAlreadyOnRestPoint)
+                    {
+                        var index = 0;
+                        for (int i = 0; i < RestPointPath.Length; i++)
+                        {
+                            var point = RestPointPath[i];
+                       
+                            var pointPlanePos = point.position;
+                            var dis = Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(pointPlanePos.x, pointPlanePos.z)) ;
+                            if (dis < currMinDist) 
+                            {
+                                index = i;
+                                currMinDist = dis;
+                            }
+                        }
+                        _currRestPointPathIndex = index;
+                        curDestination = RestPointPath[_currRestPointPathIndex].position;
+                        isAlreadyOnRestPoint = true;
+                    } else
+                    {
+                        var curDesRestpoint = RestPointPath[_currRestPointPathIndex].position;
+                        var planePos3 = new Vector2(transform.position.x, transform.position.z);
+                        var curDestinationPlanePos33 = new Vector2(curDesRestpoint.x, curDesRestpoint.z);
+                        if (Vector3.Distance(planePos3, curDestinationPlanePos33) < 0.05f)
+                        {
+                            StopCharacter();
+                            if (!(_currRestPointPathIndex == RestPointPath.Length - 1))
+                            {
+                                _currRestPointPathIndex++;
+                            }
+                            curDestination = RestPointPath[_currRestPointPathIndex].position;
+                        }
                     }
                     break;
             }
@@ -138,6 +182,7 @@ namespace Twinfiltration
         private void EndInteraction()
         {
             m_MovementBlocked = false;
+            activePathType = PathType.RestPoint;
             // make them path to the rest point
         }
         
