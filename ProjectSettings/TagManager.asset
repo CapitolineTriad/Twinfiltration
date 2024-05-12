@@ -10,6 +10,10 @@ TagManager:
   - UIAbility
   - Player2
   - Player1
+  - DOORTAG1
+  - CONSOLE1
+  - DOORTAG2
+  - CONSOLE2
   layers:
   - Default
   - TransparentFX
