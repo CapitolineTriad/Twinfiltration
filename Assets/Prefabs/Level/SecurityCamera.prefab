@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 865808601768584442}
   - component: {fileID: 3529051332001212186}
   - component: {fileID: 9050513254796845744}
+  - component: {fileID: 7431111459337615833}
   m_Layer: 0
   m_Name: SecurityCamera
   m_TagString: Untagged
@@ -925,49 +926,23 @@ MonoBehaviour:
   m_Mesh: {fileID: 0}
   m_VersionIndex: 3037
   m_IsSelectable: 1
-  m_SelectedFaces: 0b0000000a0000000c0000000d00000000000000
-  m_SelectedEdges:
-  - a: 44
-    b: 45
-  - a: 46
-    b: 44
-  - a: 45
-    b: 47
-  - a: 47
-    b: 46
-  - a: 40
-    b: 41
-  - a: 42
-    b: 40
-  - a: 41
-    b: 43
-  - a: 43
-    b: 42
-  - a: 48
-    b: 49
-  - a: 50
-    b: 48
-  - a: 49
-    b: 51
-  - a: 51
-    b: 50
-  - a: 52
-    b: 53
-  - a: 54
-    b: 52
-  - a: 53
-    b: 55
-  - a: 55
-    b: 54
-  - a: 0
-    b: 1
-  - a: 1
-    b: 2
-  - a: 2
-    b: 3
-  - a: 3
-    b: 0
-  m_SelectedVertices: 2c0000002d0000002e0000002f00000028000000290000002a0000002b000000300000003100000032000000330000003400000035000000360000003700000000000000010000000200000003000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
+--- !u!114 &7431111459337615833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7699667414277240117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763e945e342a03740adb30e62449596d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsDynamicBatchingDisabled: 1
+  m_IsStatic: 0
 --- !u!1001 &1184846487639833704
 PrefabInstance:
   m_ObjectHideFlags: 0

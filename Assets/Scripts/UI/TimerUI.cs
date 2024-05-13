@@ -8,22 +8,23 @@ public class TimerUI : MonoBehaviour
 {
     [SerializeField] private float m_AngularFrequency = 10f;
     [SerializeField] private float m_DampingRatio = 0.8f;
-    [SerializeField] private Scrollbar m_Scrollbar1;
-    [SerializeField] private Scrollbar m_Scrollbar2;
-    [SerializeField] private Scrollbar m_Scrollbar3;
-    [SerializeField] private Scrollbar m_Scrollbar4;
 
-    private float[] m_ScrollStamps = new float[10] { 1, 0.891f, 0.782f, 0.673f, 0.564f, 0.455f, 0.333f, 0.236f, 0.114f, 0 };
+    [SerializeField] private Transform m_Minutex10;
+    [SerializeField] private Transform m_Minute;
+    [SerializeField] private Transform m_Secondx10;
+    [SerializeField] private Transform m_Second;
 
+    [SerializeField] private GameObject m_ContentSample;
+
+    private Rect m_ContentRect;
+    private float m_ScrollHeightOrigin;
     private void Awake()
     {
-        m_Scrollbar1.value = 1;
-        m_Scrollbar2.value = 1;
-        m_Scrollbar3.value = 1;
-        m_Scrollbar4.value = 1;
+        m_ContentRect = new Rect(0, 0, 30, 30); //m_ContentSample.GetComponent<RectTransform>().rect;
+        m_ScrollHeightOrigin = m_Second.localPosition.y;
     }
 
-    public float m_TimePassed = 0f;
+    [HideInInspector] public float m_TimePassed = 0f;
     private float m_Digit1Vel;
     private float m_Digit2Vel;
     private float m_Digit3Vel;
@@ -39,19 +40,19 @@ public class TimerUI : MonoBehaviour
         int digit3 = (int)m_TimePassed / 60 % 10;
         int digit4 = (int)m_TimePassed / 60 / 10 % 10;
 
-        float scrollBar1 = m_Scrollbar1.value;
-        float scrollBar2 = m_Scrollbar2.value;
-        float scrollBar3 = m_Scrollbar3.value;
-        float scrollBar4 = m_Scrollbar4.value;
+        Vector3 m_SecondPos = m_Second.localPosition;
+        Vector3 m_Secondx10Pos = m_Secondx10.localPosition;
+        Vector3 m_MinutePos = m_Minute.localPosition;
+        Vector3 m_Minutex10Pos = m_Minutex10.localPosition;
 
-        SpringUtils.UpdateDampedSpringMotion(ref scrollBar1, ref m_Digit1Vel, m_ScrollStamps[digit1], m_SpringCoefs);
-        SpringUtils.UpdateDampedSpringMotion(ref scrollBar2, ref m_Digit2Vel, m_ScrollStamps[digit2], m_SpringCoefs);
-        SpringUtils.UpdateDampedSpringMotion(ref scrollBar3, ref m_Digit3Vel, m_ScrollStamps[digit3], m_SpringCoefs);
-        SpringUtils.UpdateDampedSpringMotion(ref scrollBar4, ref m_Digit4Vel, m_ScrollStamps[digit4], m_SpringCoefs);
+        SpringUtils.UpdateDampedSpringMotion(ref m_SecondPos.y, ref m_Digit1Vel, m_ScrollHeightOrigin + digit1 * m_ContentRect.height, m_SpringCoefs);
+        SpringUtils.UpdateDampedSpringMotion(ref m_Secondx10Pos.y, ref m_Digit2Vel, m_ScrollHeightOrigin + digit2 * m_ContentRect.height, m_SpringCoefs);
+        SpringUtils.UpdateDampedSpringMotion(ref m_MinutePos.y, ref m_Digit3Vel, m_ScrollHeightOrigin + digit3 * m_ContentRect.height, m_SpringCoefs);
+        SpringUtils.UpdateDampedSpringMotion(ref m_Minutex10Pos.y, ref m_Digit4Vel, m_ScrollHeightOrigin + digit4 * m_ContentRect.height, m_SpringCoefs);
 
-        m_Scrollbar1.value = scrollBar1;
-        m_Scrollbar2.value = scrollBar2;
-        m_Scrollbar3.value = scrollBar3;
-        m_Scrollbar4.value = scrollBar4;
+        m_Second.localPosition = m_SecondPos;
+        m_Secondx10.localPosition = m_Secondx10Pos;
+        m_Minute.localPosition = m_MinutePos;
+        m_Minutex10.localPosition = m_Minutex10Pos;
     }
 }

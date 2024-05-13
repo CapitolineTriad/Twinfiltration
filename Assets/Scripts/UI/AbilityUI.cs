@@ -16,12 +16,14 @@ public class AbilityUI : MonoBehaviour
     private System.Random m_Random = new System.Random();
     private Transform m_UITransform;
     private Vector3 m_OriginalPosition;
+    private Vector3 m_OriginalRotation;
 
     private void Awake()
     {
         m_UITransform = transform;
         m_LastFill = m_CurrFill;
         m_OriginalPosition = m_UITransform.position;
+        m_OriginalRotation = m_UITransform.rotation.eulerAngles;
         m_Text.text = $"Uses: {m_CurrFill}";
     }
 
@@ -29,6 +31,7 @@ public class AbilityUI : MonoBehaviour
     {
         m_XVel = m_Random.Next(-100, 100);
         m_YVel = m_Random.Next(-100, 100);
+        m_ZVel = m_Random.Next(-100, 100);
     }
 
     private float m_FillVelocity;
@@ -42,6 +45,7 @@ public class AbilityUI : MonoBehaviour
 
     private float m_XVel;
     private float m_YVel;
+    private float m_ZVel;
     private float m_LastFill;
     private SpringCoefs m_SpringCoefs;
     private void Update()
@@ -58,8 +62,13 @@ public class AbilityUI : MonoBehaviour
         m_LastFill = m_CurrFill;
 
         Vector3 newPos = m_UITransform.position;
+        Vector3 newRot = m_UITransform.rotation.eulerAngles;
         SpringUtils.UpdateDampedSpringMotion(ref newPos.x, ref m_XVel, m_OriginalPosition.x, m_SpringCoefs);
         SpringUtils.UpdateDampedSpringMotion(ref newPos.y, ref m_YVel, m_OriginalPosition.y, m_SpringCoefs);
+        SpringUtils.UpdateDampedSpringMotion(ref newRot.z, ref m_ZVel, m_OriginalRotation.z, m_SpringCoefs);
+
+        newRot.z = Mathf.Abs(newRot.z);
         m_UITransform.position = newPos;
+        m_UITransform.rotation = Quaternion.Euler(newRot);
     }
 }

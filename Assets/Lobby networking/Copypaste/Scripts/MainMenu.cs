@@ -9,6 +9,11 @@ namespace DapperDino.Mirror.Tutorials.Lobby
         [Header("UI")]
         [SerializeField] private GameObject landingPagePanel = null;
 
+        private void Start()
+        {
+            Application.targetFrameRate = 60;
+        }
+
         public void HostLobby()
         {
             networkManager.StartHost();

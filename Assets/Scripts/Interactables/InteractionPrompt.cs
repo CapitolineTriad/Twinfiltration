@@ -14,7 +14,7 @@ namespace Twinfiltration
         [SerializeField] private bool m_Player1Only;
         [SerializeField] private bool m_Player2Only;
         [SerializeField] private GameObject m_InteractUI;
-        [SerializeField] private TextMeshProUGUI m_InteractText;
+        [SerializeField] public TextMeshProUGUI m_InteractText;
         [SerializeField][TextArea(1, 1)] private string m_InteractPrompt = "";
         [SerializeField] private UnityEvent m_InteractAction;
 
@@ -67,6 +67,9 @@ namespace Twinfiltration
 
         private void HandleInput()
         {
+            if (!m_IsInTrigger || !m_PlayerInTrigger.isLocalPlayer)
+                return;
+
             if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Joystick1Button1))
                 m_InteractAction.Invoke();
         }
@@ -80,10 +83,11 @@ namespace Twinfiltration
         }
 
         private bool m_IsInTrigger = false;
+        private PlayerController m_PlayerInTrigger;
         private void UpdateVisibility()
         {
             bool isVisible = m_VisibilityInfo != null ? m_VisibilityInfo.Visibile : true;
-            if(m_IsInTrigger && isVisible)
+            if(m_IsInTrigger && isVisible && m_PlayerInTrigger.isLocalPlayer)
             {
                 m_InteractUI.SetActive(true);
                 m_AlphaTarget = 1f;
@@ -96,14 +100,17 @@ namespace Twinfiltration
 
         public void TriggerHacking()
         {
-            var p1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerController>();
-            p1.TriggerHacking(transform.parent, this, gameObject.tag);
+            if (m_PlayerInTrigger.isLocalPlayer)
+                m_PlayerInTrigger.TriggerHacking(transform.parent, this, gameObject.tag);
         }
 
         public void TriggerGuardInteract()
         {
-            var p2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerController>();
-            p2.GuardInteract(transform.parent.GetComponent<EnemyController>());
+            if (m_PlayerInTrigger.isLocalPlayer)
+            {
+                m_PlayerInTrigger.GuardInteract(transform.parent.GetComponent<EnemyController>());
+                gameObject.SetActive(false);
+            }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -117,6 +124,7 @@ namespace Twinfiltration
                 return;
 
             Debug.Log("Entered interaction zone.");
+            m_PlayerInTrigger = other.GetComponent<PlayerController>();
             m_IsInTrigger = true;
         }
 
@@ -125,7 +133,13 @@ namespace Twinfiltration
             if (other.gameObject.layer != 3)
                 return;
 
+            if (m_Player2Only && other.tag != "Player2")
+                return;
+            else if (m_Player1Only && other.tag != "Player1")
+                return;
+
             Debug.Log("Exited interaction zone");
+            m_PlayerInTrigger = null;
             m_IsInTrigger = false;
         }
     }

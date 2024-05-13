@@ -1,4 +1,5 @@
 using Mirror;
+using Org.BouncyCastle.Security;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -40,6 +41,7 @@ namespace Twinfiltration
             if (!isLocalPlayer)
                 return;
 
+            Cursor.lockState = CursorLockMode.Locked;
             m_CameraController.m_TrackedObject = m_CharTransform;
             m_AbilityUI.m_MaxFill = m_AbilityUses;
             m_AbilityUI.m_CurrFill = m_AbilityUses;
@@ -89,7 +91,7 @@ namespace Twinfiltration
                 }
                 m_TimerLastFrame = m_MovementBlockTimer;
             }
-            
+
             if (!IsDisguised && m_AbilityUses > 0 && (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Joystick1Button2)))
             {
                 Vector3 devicePos = m_CharTransform.position + Vector3.up + m_CharTransform.forward;
@@ -133,22 +135,31 @@ namespace Twinfiltration
 
         private void LateUpdate()
         {
-            RotateCamera();
+            float deltaTime = Time.deltaTime;
+
+            RotateCamera(deltaTime);
         }
 
+        const float rotationAmount = 45f;
         private float camYaw = 0f;
-        private void RotateCamera()
+        private void RotateCamera(float deltaTime)
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.Joystick1Button3))
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.Joystick1Button6))
             {
-                camYaw = camYaw + 90f;
+                camYaw = (camYaw + rotationAmount) % 360;
+                m_CameraController.m_CameraYaw = camYaw;
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.Joystick1Button5))
+            {
+                camYaw = (camYaw <= 0 ? 360f - rotationAmount : camYaw - rotationAmount) % 360;
                 m_CameraController.m_CameraYaw = Mathf.Abs(camYaw) % 360;
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.Joystick1Button4))
-            {
-                camYaw = camYaw - 90f;
-                m_CameraController.m_CameraYaw = Mathf.Abs(camYaw) % 360;
-            }
+        }
+
+        public void SetCameraRotation(float camRot)
+        {
+            camYaw = camRot;
+            m_CameraController.m_CameraYaw = camYaw;
         }
 
         public void GuardInteract(EnemyController guard)
@@ -201,11 +212,17 @@ namespace Twinfiltration
         InteractPrompt lastPrompt;
         [SerializeField] AudioSource _guardSaluteAudio;
         [SerializeField] AudioSource _hackingAudioSource;
-
         public void TriggerHacking(Transform console, InteractPrompt prompt, string consoleTag)
         {
+            if (isHacking)
+            {
+                InterruptHacking();
+                return;
+            }
+
             lastPromptTag = consoleTag;
             lastPrompt = prompt;
+            prompt.m_InteractText.text = "Stop Hack";
             isHacking = true;
             if (_hackingAudioSource != null)
             {
@@ -223,6 +240,7 @@ namespace Twinfiltration
 
         public void InterruptHacking()
         {
+            lastPrompt.m_InteractText.text = "Hack";
             isHacking = false;
             m_MovementBlockTimer = 0.1f;
         }

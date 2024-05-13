@@ -389,25 +389,49 @@ PrefabInstance:
       propertyPath: m_RenderingPath
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 134963b0b48d66946aec7dc0b0e739e4, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 384
+      objectReference: {fileID: 0}
     - target: {fileID: 2000002, guid: 134963b0b48d66946aec7dc0b0e739e4, type: 3}
       propertyPath: m_RenderingPath
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000002, guid: 134963b0b48d66946aec7dc0b0e739e4, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294957440
       objectReference: {fileID: 0}
     - target: {fileID: 2000004, guid: 134963b0b48d66946aec7dc0b0e739e4, type: 3}
       propertyPath: m_RenderingPath
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2000004, guid: 134963b0b48d66946aec7dc0b0e739e4, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 384
+      objectReference: {fileID: 0}
     - target: {fileID: 2000006, guid: 134963b0b48d66946aec7dc0b0e739e4, type: 3}
       propertyPath: m_RenderingPath
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000006, guid: 134963b0b48d66946aec7dc0b0e739e4, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 384
       objectReference: {fileID: 0}
     - target: {fileID: 2000008, guid: 134963b0b48d66946aec7dc0b0e739e4, type: 3}
       propertyPath: m_RenderingPath
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2000008, guid: 134963b0b48d66946aec7dc0b0e739e4, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 384
+      objectReference: {fileID: 0}
     - target: {fileID: 2000010, guid: 134963b0b48d66946aec7dc0b0e739e4, type: 3}
       propertyPath: m_RenderingPath
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000010, guid: 134963b0b48d66946aec7dc0b0e739e4, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 384
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 134963b0b48d66946aec7dc0b0e739e4, type: 3}
       propertyPath: m_MaskColor.b

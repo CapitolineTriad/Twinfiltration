@@ -34,7 +34,7 @@ namespace Twinfiltration
 
 
 
-        [Server]
+        [ServerCallback]
         protected void Start()
         {
             activePathType = pathType;
@@ -43,7 +43,7 @@ namespace Twinfiltration
         }
 
         private float m_LastTime;
-        [Server]
+        [ServerCallback]
         private void Update()
         {
             if(m_InteractTimer > 0)
@@ -59,7 +59,7 @@ namespace Twinfiltration
             }
         }
 
-        [Server]
+        [ServerCallback]
         protected override void GetMovementInput()
         {
             if (activePathType == PathType.StandStill)

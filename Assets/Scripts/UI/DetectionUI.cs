@@ -44,6 +44,7 @@ namespace Twinfiltration
                 if (m_AlphaTarget == 0)
                 {
                     m_DetectionTimer = 0;
+                    m_DetectionMeter.fillAmount = 0;
                 }
                 else if (m_AlphaTarget == 1)
                 {
@@ -77,11 +78,6 @@ namespace Twinfiltration
             var p2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerController>();
             var guard = m_VisibilityInfo.VisibleSources[0].GameObject.transform.parent.parent.GetComponent<EnemyController>(); // lol
 
-            for(int i=1; i < m_VisibilityInfo.VisibleSources.Count; i++)
-            {
-                var newGuard = m_VisibilityInfo.VisibleSources[i].GameObject.transform.parent.parent.GetComponent<EnemyController>();
-                newGuard.TriggerGameOver(p1);
-            }
             if (!_detectionAudio.isPlaying)
             {
                 _detectionAudio.Play();
@@ -90,6 +86,11 @@ namespace Twinfiltration
             p1.TriggerGameOver(guard);
             p2.TriggerGameOver(guard);
             guard.TriggerGameOver(p1);
+            for (int i = 1; i < m_VisibilityInfo.VisibleSources.Count; i++)
+            {
+                var newGuard = m_VisibilityInfo.VisibleSources[i].GameObject.transform.parent.parent.GetComponent<EnemyController>();
+                newGuard.TriggerGameOver(p1);
+            }
 
             // GAME OVER SCREEN TRIGGERED HERE
             StartCoroutine(GameOverCoroutine(p1, p2));
