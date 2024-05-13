@@ -178,8 +178,7 @@ namespace Twinfiltration
             m_AbilityUI.m_CurrFill = m_AbilityUses;
             guard.GuardInteract(this); // server command
 
-            var clip = _saluteAudioClips[m_RandNumGen.Next(_saluteAudioClips.Length)];
-            _guardSaluteAudio?.PlayOneShot(clip);
+            PlayGuardAudioServer();
         }
 
         public void TriggerGameOver(EnemyController guard)
@@ -220,10 +219,7 @@ namespace Twinfiltration
             lastPrompt = prompt;
             prompt.m_InteractText.text = "Stop Hack";
             isHacking = true;
-            if (_hackingAudioSource != null)
-            {
-                _hackingAudioSource.Play();
-            }
+            PlayHackAudioServer(true);
             Vector3 toConsole = console.position - m_CharTransform.position;
             var eulerRot = Quaternion.LookRotation(toConsole, Vector3.up).eulerAngles;
             var currentRot = m_CharTransform.rotation.eulerAngles;
@@ -236,10 +232,42 @@ namespace Twinfiltration
 
         public void InterruptHacking()
         {
-            _hackingAudioSource.Stop();
+            PlayHackAudioServer(false);
             lastPrompt.m_InteractText.text = "Hack";
             isHacking = false;
             m_MovementBlockTimer = 0.1f;
+        }
+
+        [Command(requiresAuthority = false)]
+        private void PlayHackAudioServer(bool play)
+        {
+            PlayHackAudioClient(play);
+        }
+
+        [ClientRpc]
+        private void PlayHackAudioClient(bool play)
+        {
+            if (play)
+            {
+                _hackingAudioSource.Play();
+            }
+            else
+            {
+                _hackingAudioSource.Stop();
+            }
+        }
+
+        [Command(requiresAuthority = false)]
+        private void PlayGuardAudioServer()
+        {
+            PlayGuardAudioClient();
+        }
+
+        [ClientRpc]
+        private void PlayGuardAudioClient()
+        {
+            var clip = _saluteAudioClips[m_RandNumGen.Next(_saluteAudioClips.Length)];
+            _guardSaluteAudio?.PlayOneShot(clip);
         }
 
         protected override void GetMovementInput()

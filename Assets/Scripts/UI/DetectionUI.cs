@@ -91,15 +91,9 @@ namespace Twinfiltration
 
             p1.TriggerGameOver(firstGuard);
             p2.TriggerGameOver(firstGuard);
-            if (!_detectionAudio.isPlaying)
+            if (firstGuard != null && !_detectionAudio.isPlaying)
             {
                 _detectionAudio.Play();
-            }
-
-            for (int i = 1; i < m_VisibilityInfo.VisibleSources.Count; i++)
-            {
-                var newGuard = m_VisibilityInfo.VisibleSources[i].GameObject.transform.parent.parent.GetComponent<EnemyController>();
-                newGuard.TriggerGameOver(p1);
             }
 
             // GAME OVER SCREEN TRIGGERED HERE

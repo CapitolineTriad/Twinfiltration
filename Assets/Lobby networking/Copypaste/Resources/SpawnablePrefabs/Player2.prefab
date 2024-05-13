@@ -1347,7 +1347,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a32fd3166111fcf4dac58c010380c761, type: 3}
   - {fileID: 8300000, guid: 55e68298e5e2ada4bb04f2a139647b20, type: 3}
   - {fileID: 8300000, guid: a69a604a31af38b43a030776f6ccb22d, type: 3}
-  IsDisguised: 0
+  IsDisguised: 1
   m_TrackerPrefab: {fileID: 0}
   m_AbilityUses: 3
   _gameOverUI: {fileID: 7509082739923615858}
