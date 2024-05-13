@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using LOS;
-using Mirror.Examples.AdditiveLevels;
 using System.Collections;
 
 namespace Twinfiltration
@@ -69,7 +68,7 @@ namespace Twinfiltration
         }
 
         private bool m_WasDetected = false;
-        private void TriggerGameOver()
+        public void TriggerGameOver()
         {
             m_AlphaTarget = 0f;
             // AAAAAAAAAAA DIE DEI DEID DIEDIE DIE

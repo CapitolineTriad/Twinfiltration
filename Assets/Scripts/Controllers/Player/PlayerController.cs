@@ -305,5 +305,17 @@ namespace Twinfiltration
         {
             m_Animator.SetBool(name, value);
         }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (IsDisguised || collision.gameObject.layer != 6)
+                return;
+
+            EnemyController enemyController = collision.gameObject.GetComponent<EnemyController>();
+            if (!enemyController)
+                return;
+
+            GetComponentInChildren<DetectionUI>().TriggerGameOver(); // wonderful
+        }
     }
 }
