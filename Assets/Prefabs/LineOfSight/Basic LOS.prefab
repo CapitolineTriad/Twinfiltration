@@ -167,7 +167,7 @@ Transform:
   m_GameObject: {fileID: 5684316924718451389}
   serializedVersion: 2
   m_LocalRotation: {x: 0.707106, y: -0, z: -0, w: 0.7071076}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_RenderTargetWidth: 512
   m_RenderTargetHeight: 512
   m_DistanceFade: 0.625
-  m_EdgeFade: 0
+  m_EdgeFade: 0.625
   m_ExcludeBackfaces: 1
   m_BackfacesFade: 0.1
   m_MinVariance: 0.1
@@ -256,6 +256,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7067716298978871439}
     m_Modifications:
+    - target: {fileID: 4082566905384764908, guid: da64f57a71eefa34ea89c5ff1589888a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082566905384764908, guid: da64f57a71eefa34ea89c5ff1589888a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3818
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082566905384764908, guid: da64f57a71eefa34ea89c5ff1589888a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.3818
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082566905384764908, guid: da64f57a71eefa34ea89c5ff1589888a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000001138
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082566905384764908, guid: da64f57a71eefa34ea89c5ff1589888a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.397
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082566905384764908, guid: da64f57a71eefa34ea89c5ff1589888a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 4636378022507081991, guid: da64f57a71eefa34ea89c5ff1589888a, type: 3}
       propertyPath: m_Name
       value: ApertureBlocker
@@ -315,6 +339,10 @@ PrefabInstance:
     - target: {fileID: 5412316935113550781, guid: da64f57a71eefa34ea89c5ff1589888a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8116075671028927115, guid: da64f57a71eefa34ea89c5ff1589888a, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

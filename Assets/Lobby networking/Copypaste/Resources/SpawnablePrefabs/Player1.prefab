@@ -1662,7 +1662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RaycastLayerMask:
     serializedVersion: 2
-    m_Bits: 456
+    m_Bits: 1416
   m_SeenByTag: NPC
   m_MeshRenderer: {fileID: 7066450784032210328}
 --- !u!95 &507603093173748435
@@ -4796,41 +4796,13 @@ PrefabInstance:
       propertyPath: m_MaskColor.r
       value: 0.31764707
       objectReference: {fileID: 0}
-    - target: {fileID: 3714889913136396713, guid: d2e62d860af334945a2c866b57efba37, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 3714889913136396713, guid: d2e62d860af334945a2c866b57efba37, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.3818
-      objectReference: {fileID: 0}
-    - target: {fileID: 3714889913136396713, guid: d2e62d860af334945a2c866b57efba37, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.3818
-      objectReference: {fileID: 0}
-    - target: {fileID: 3714889913136396713, guid: d2e62d860af334945a2c866b57efba37, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.0000001138
-      objectReference: {fileID: 0}
-    - target: {fileID: 3714889913136396713, guid: d2e62d860af334945a2c866b57efba37, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.397
-      objectReference: {fileID: 0}
-    - target: {fileID: 3714889913136396713, guid: d2e62d860af334945a2c866b57efba37, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4627916847651657720, guid: d2e62d860af334945a2c866b57efba37, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 5684316924718451389, guid: d2e62d860af334945a2c866b57efba37, type: 3}
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5684316924718451389, guid: d2e62d860af334945a2c866b57efba37, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5684316924718451389, guid: d2e62d860af334945a2c866b57efba37, type: 3}
       propertyPath: m_TagString
@@ -4855,10 +4827,6 @@ PrefabInstance:
     - target: {fileID: 7428543143793875836, guid: d2e62d860af334945a2c866b57efba37, type: 3}
       propertyPath: m_MaskColor.r
       value: 0.31764707
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901320252173465294, guid: d2e62d860af334945a2c866b57efba37, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

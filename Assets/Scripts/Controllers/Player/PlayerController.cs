@@ -240,6 +240,7 @@ namespace Twinfiltration
 
         public void InterruptHacking()
         {
+            _hackingAudioSource.Stop();
             lastPrompt.m_InteractText.text = "Hack";
             isHacking = false;
             m_MovementBlockTimer = 0.1f;

@@ -515,7 +515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RaycastLayerMask:
     serializedVersion: 2
-    m_Bits: 456
+    m_Bits: 1472
   m_SeenByTag: Player
   m_MeshRenderer: {fileID: 5724343992072578659}
 --- !u!114 &4153414747292574115
@@ -3781,6 +3781,10 @@ PrefabInstance:
       propertyPath: m_MaskColor.r
       value: 0.87058824
       objectReference: {fileID: 0}
+    - target: {fileID: 5436541251944107330, guid: d2e62d860af334945a2c866b57efba37, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5684316924718451389, guid: d2e62d860af334945a2c866b57efba37, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -3795,7 +3799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7067716298978871439, guid: d2e62d860af334945a2c866b57efba37, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.18
+      value: -0.28
       objectReference: {fileID: 0}
     - target: {fileID: 7428543143793875836, guid: d2e62d860af334945a2c866b57efba37, type: 3}
       propertyPath: m_MaskColor.b
@@ -3808,6 +3812,10 @@ PrefabInstance:
     - target: {fileID: 7428543143793875836, guid: d2e62d860af334945a2c866b57efba37, type: 3}
       propertyPath: m_MaskColor.r
       value: 0.87058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901320252173465294, guid: d2e62d860af334945a2c866b57efba37, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

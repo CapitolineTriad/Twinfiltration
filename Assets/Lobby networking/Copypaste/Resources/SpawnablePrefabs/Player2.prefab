@@ -1375,7 +1375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RaycastLayerMask:
     serializedVersion: 2
-    m_Bits: 456
+    m_Bits: 1416
   m_SeenByTag: NPC
   m_MeshRenderer: {fileID: 8153572006838857274}
 --- !u!95 &390478431426752608
