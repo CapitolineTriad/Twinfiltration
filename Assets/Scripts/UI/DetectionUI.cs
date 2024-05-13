@@ -20,10 +20,7 @@ namespace Twinfiltration
         private float m_DetectionDuration = 2;
 
         [SerializeField] AudioSource _detectionAudio;
-
         [SerializeField] AudioSource _gameOverAudio;
-
-        
 
         private void Awake()
         {
@@ -70,6 +67,7 @@ namespace Twinfiltration
         private bool m_WasDetected = false;
         public void TriggerGameOver()
         {
+            m_WasDetected = true;
             m_AlphaTarget = 0f;
             // AAAAAAAAAAA DIE DEI DEID DIEDIE DIE
             // trigger gaem ovah
@@ -79,6 +77,9 @@ namespace Twinfiltration
             p2 = GameObject.FindGameObjectWithTag("Player2")?.GetComponent<PlayerController>();
             EnemyController firstGuard = null;
 
+            EnemyController.ShowAllNPCs();
+            Camera.main.GetComponent<LOSMask>().enabled = false;
+            Camera.main.GetComponent<Brightness>().enabled = false;
             for (int i = 0; i < m_VisibilityInfo.VisibleSources.Count; i++)
             {
                 var guard = m_VisibilityInfo.VisibleSources[i].GameObject.transform.parent.parent.GetComponent<EnemyController>();

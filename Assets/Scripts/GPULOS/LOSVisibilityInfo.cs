@@ -12,7 +12,7 @@ namespace LOS
 
         [Tooltip("Will be registered as invisible when not seen by a LOS camera with this tag. Empty means it's revealed when any LOS camera sees it.")]
         [SerializeField]
-        private string m_SeenByTag = string.Empty;
+        public string m_SeenByTag = string.Empty;
 
         [Tooltip("The mesh renderer that should determine the actor's visibility.")]
         [SerializeField]

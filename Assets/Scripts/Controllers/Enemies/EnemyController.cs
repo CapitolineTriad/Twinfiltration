@@ -1,3 +1,4 @@
+using LOS;
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,7 +33,16 @@ namespace Twinfiltration
 
         PathType activePathType;
 
-
+        public static void ShowAllNPCs()
+        {
+            var AllNPCs = GameObject.FindGameObjectsWithTag("NPC");
+            foreach (var npc in AllNPCs)
+            {
+                var comp = npc.GetComponent<LOSVisibilityInfo>();
+                if(comp != null)
+                    comp.m_SeenByTag = "";
+            }
+        }   
 
         [ServerCallback]
         protected void Start()
