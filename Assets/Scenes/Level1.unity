@@ -5607,6 +5607,10 @@ PrefabInstance:
       propertyPath: m_TargetTexture
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7930815161041319311, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8392791626128439466, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -8456,6 +8460,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.21109772
       objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.96450293
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.011708401
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.025349837
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.2625918
+      objectReference: {fileID: 0}
     - target: {fileID: 6039685962976044534, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -8507,6 +8527,10 @@ PrefabInstance:
     - target: {fileID: 7198535308077835009, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_TargetTexture
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930815161041319311, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8392791626128439466, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
@@ -14774,6 +14798,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.21110535
       objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.96450293
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.011708401
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.025349837
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.2625918
+      objectReference: {fileID: 0}
     - target: {fileID: 6039685962976044534, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -14825,6 +14865,10 @@ PrefabInstance:
     - target: {fileID: 7198535308077835009, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_TargetTexture
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930815161041319311, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8392791626128439466, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
@@ -16285,7 +16329,6 @@ GameObject:
   m_Component:
   - component: {fileID: 635207699}
   - component: {fileID: 635207698}
-  - component: {fileID: 635207697}
   - component: {fileID: 635207696}
   - component: {fileID: 635207695}
   - component: {fileID: 635207694}
@@ -16369,14 +16412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2fe9082113d1a4a9c09e27df518e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!81 &635207697
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635207691}
-  m_Enabled: 1
 --- !u!20 &635207698
 Camera:
   m_ObjectHideFlags: 0
@@ -18526,6 +18561,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.21110535
       objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.96450293
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.011708401
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.025349837
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.2625918
+      objectReference: {fileID: 0}
     - target: {fileID: 6039685962976044534, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -18577,6 +18628,10 @@ PrefabInstance:
     - target: {fileID: 7198535308077835009, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_TargetTexture
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930815161041319311, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8392791626128439466, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
@@ -22521,7 +22576,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &855682719
 Transform:
   m_ObjectHideFlags: 0
@@ -27301,6 +27356,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.21110535
       objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.96450293
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.011708401
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.025349837
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.2625918
+      objectReference: {fileID: 0}
     - target: {fileID: 6039685962976044534, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -27352,6 +27423,10 @@ PrefabInstance:
     - target: {fileID: 7198535308077835009, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_TargetTexture
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930815161041319311, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8392791626128439466, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
@@ -32113,6 +32188,10 @@ PrefabInstance:
       propertyPath: m_TargetTexture
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7930815161041319311, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8392791626128439466, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -34834,6 +34913,10 @@ PrefabInstance:
     - target: {fileID: 7198535308077835009, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_TargetTexture
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930815161041319311, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8392791626128439466, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
@@ -37938,6 +38021,10 @@ PrefabInstance:
     - target: {fileID: 7198535308077835009, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_TargetTexture
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930815161041319311, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8392791626128439466, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
@@ -43103,6 +43190,10 @@ PrefabInstance:
     - target: {fileID: 7198535308077835009, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_TargetTexture
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930815161041319311, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8392791626128439466, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
@@ -54472,6 +54563,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.21109772
       objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.96450293
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.011708401
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.025349837
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.2625918
+      objectReference: {fileID: 0}
     - target: {fileID: 6039685962976044534, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -54527,6 +54634,10 @@ PrefabInstance:
     - target: {fileID: 7198535308077835009, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_TargetTexture
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930815161041319311, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8392791626128439466, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
@@ -72044,6 +72155,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.21109009
       objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.96450293
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.011708401
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.025349837
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010379142295745554, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.2625918
+      objectReference: {fileID: 0}
     - target: {fileID: 6039685962976044534, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -72095,6 +72222,10 @@ PrefabInstance:
     - target: {fileID: 7198535308077835009, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_TargetTexture
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930815161041319311, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8392791626128439466, guid: c3355ce4b14d17b4ea23a93f52b6e49d, type: 3}
       propertyPath: m_Mesh

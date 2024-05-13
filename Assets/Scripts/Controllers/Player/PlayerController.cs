@@ -22,6 +22,8 @@ namespace Twinfiltration
         [SerializeField] AudioSource _gameMusic;
         [SerializeField] AudioClip[] _saluteAudioClips;
 
+        [SerializeField] AudioListener _audioListener;
+
         private static System.Random m_RandNumGen;
 
         protected override void Awake()
@@ -41,6 +43,8 @@ namespace Twinfiltration
             if (!isLocalPlayer)
                 return;
 
+            _stepSource.volume = 0.1f;
+            _audioListener.enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
             m_CameraController.m_TrackedObject = m_CharTransform;
             m_AbilityUI.m_MaxFill = m_AbilityUses;
