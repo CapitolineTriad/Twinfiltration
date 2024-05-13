@@ -43,6 +43,9 @@ namespace Twinfiltration
             if (!isLocalPlayer)
                 return;
 
+            if (IsDisguised)
+                m_CharTransform.position = new Vector3(15.68f, 2f, 0f);
+
             _stepSource.volume = 0.1f;
             _audioListener.enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
