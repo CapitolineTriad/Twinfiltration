@@ -73,8 +73,10 @@ namespace Twinfiltration
             m_AlphaTarget = 0f;
             // AAAAAAAAAAA DIE DEI DEID DIEDIE DIE
             // trigger gaem ovah
-            var p1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerController>();
-            var p2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerController>();
+            PlayerController p1 = null;
+            p1 = GameObject.FindGameObjectWithTag("Player1")?.GetComponent<PlayerController>();
+            PlayerController p2 = null;
+            p2 = GameObject.FindGameObjectWithTag("Player2")?.GetComponent<PlayerController>();
             EnemyController firstGuard = null;
 
             for (int i = 0; i < m_VisibilityInfo.VisibleSources.Count; i++)
@@ -88,8 +90,14 @@ namespace Twinfiltration
                 }
             }
 
-            p1.TriggerGameOver(firstGuard);
-            p2.TriggerGameOver(firstGuard);
+            if (p1 != null)
+            {
+                p1.TriggerGameOver(firstGuard);
+            }
+            if (p2 != null)
+            {
+                p2.TriggerGameOver(firstGuard);
+            }
             if (firstGuard != null && !_detectionAudio.isPlaying)
             {
                 _detectionAudio.Play();
@@ -106,8 +114,14 @@ namespace Twinfiltration
                 yield return null;
             }
             _gameOverAudio.Play();
-            p1.TriggerGameOverScreen();
-            p2.TriggerGameOverScreen();
+            if (p1 != null)
+            {
+                p1.TriggerGameOverScreen();
+            }
+            if (p2 != null)
+            {
+                p2.TriggerGameOverScreen();
+            }
         } 
 
         private void RotateUI()
