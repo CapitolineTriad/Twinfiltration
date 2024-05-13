@@ -1,4 +1,5 @@
 using Mirror;
+using Org.BouncyCastle.Asn1.Mozilla;
 using Org.BouncyCastle.Security;
 using System.Collections;
 using System.Collections.Generic;
@@ -202,6 +203,15 @@ namespace Twinfiltration
                 Vector3 toGuard = guard.m_CharTransform.position - m_CharTransform.position;
                 m_CharTransform.rotation = Quaternion.LookRotation(toGuard, Vector3.up);
             }
+        }
+
+        public void TriggerWin()
+        {
+            if (!isLocalPlayer)
+                return;
+
+            m_MovementBlocked = true;
+            StopCharacter();
         }
 
         public void TriggerGameOverScreen()
