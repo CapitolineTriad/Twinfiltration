@@ -10,6 +10,8 @@ namespace Twinfiltration
         [SerializeField] private Transform m_LeftDoor;
         [SerializeField] private Transform m_RightDoor;
         [SerializeField] private float m_SlideDistance = 0.5f;
+        [SerializeField] private AudioSource m_OpenDoor;
+        [SerializeField] private AudioSource m_CloseDoor;
 
         private int m_IsInTrigger;
         private Vector3 m_LeftDoorOrig;
@@ -33,6 +35,7 @@ namespace Twinfiltration
 
             if (m_IsInTrigger <= 0)
             {
+                m_OpenDoor.Play();
                 m_LeftDoorTarget = m_LeftDoorOrig - new Vector3(m_SlideDistance, 0, 0);
                 m_RightDoorTarget = m_RightDoorOrig + new Vector3(m_SlideDistance, 0, 0);
             }
@@ -48,6 +51,7 @@ namespace Twinfiltration
             m_IsInTrigger -= 1;
             if (m_IsInTrigger <= 0)
             {
+                m_CloseDoor.Play();
                 m_LeftDoorTarget = m_LeftDoorOrig;
                 m_RightDoorTarget = m_RightDoorOrig;
             }

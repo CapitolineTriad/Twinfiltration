@@ -9,7 +9,7 @@ namespace Twinfiltration
     [RequireComponent(typeof(CapsuleCollider), typeof(Rigidbody))]
     public class CharacterController : NetworkBehaviour
     {
-        private static System.Random m_RandNumGen2;
+        protected static System.Random m_RandNumGen2;
 
         [SerializeField] protected ControllerDefinition m_ControllerDefinition;
 
@@ -26,8 +26,8 @@ namespace Twinfiltration
         protected bool m_IsJumping;
         protected bool m_IsGrounded = true;
 
-        [SerializeField] AudioSource _stepSource;
-        [SerializeField] AudioClip[] _audioSourceClips;
+        [SerializeField] protected AudioSource _stepSource;
+        [SerializeField] protected AudioClip[] _audioSourceClips;
 
         #region Callbacks
 
@@ -107,6 +107,13 @@ namespace Twinfiltration
             //        _stepSource.Play();
             //    }
             //}
+        }
+
+        public void PlayFootstepSound()
+        {
+            var clip = _audioSourceClips[m_RandNumGen2.Next(_audioSourceClips.Length)];
+            _stepSource.clip = clip;
+            _stepSource.Play();
         }
 
         private void ApplyRotation(float turnFactor)
