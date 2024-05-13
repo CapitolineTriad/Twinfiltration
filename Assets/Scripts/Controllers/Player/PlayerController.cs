@@ -191,11 +191,7 @@ namespace Twinfiltration
             m_MovementBlocked = true;
             StopCharacter();
 
-            if (IsDisguised)
-            {
-
-            }
-            else
+            if (!IsDisguised && guard != null)
             {
                 Vector3 toGuard = guard.m_CharTransform.position - m_CharTransform.position;
                 m_CharTransform.rotation = Quaternion.LookRotation(toGuard, Vector3.up);

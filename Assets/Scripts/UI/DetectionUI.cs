@@ -76,16 +76,26 @@ namespace Twinfiltration
             // trigger gaem ovah
             var p1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerController>();
             var p2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerController>();
-            var guard = m_VisibilityInfo.VisibleSources[0].GameObject.transform.parent.parent.GetComponent<EnemyController>(); // lol
+            EnemyController firstGuard = null;
 
+            for (int i = 0; i < m_VisibilityInfo.VisibleSources.Count; i++)
+            {
+                var guard = m_VisibilityInfo.VisibleSources[i].GameObject.transform.parent.parent.GetComponent<EnemyController>();
+                if(guard != null)
+                {
+                    guard.TriggerGameOver(p1);
+                    if(firstGuard == null)
+                        firstGuard = guard;
+                }
+            }
+
+            p1.TriggerGameOver(firstGuard);
+            p2.TriggerGameOver(firstGuard);
             if (!_detectionAudio.isPlaying)
             {
                 _detectionAudio.Play();
             }
 
-            p1.TriggerGameOver(guard);
-            p2.TriggerGameOver(guard);
-            guard.TriggerGameOver(p1);
             for (int i = 1; i < m_VisibilityInfo.VisibleSources.Count; i++)
             {
                 var newGuard = m_VisibilityInfo.VisibleSources[i].GameObject.transform.parent.parent.GetComponent<EnemyController>();
